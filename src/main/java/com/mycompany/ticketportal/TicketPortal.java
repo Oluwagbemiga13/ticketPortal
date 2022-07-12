@@ -35,13 +35,15 @@ public class TicketPortal {
     
     public static Ticket createTicket(){
         
-        System.out.println("Eneter destination: ");
+        System.out.println("Enter destination: ");
         Scanner scanner = new Scanner(System.in);
         String destinationCreate = scanner.nextLine();
         
-        System.out.println("Eneter price: ");
+        System.out.println("Enter price: ");
+        
+        // Handling worng input
         while(!scanner.hasNextInt()){
-            System.out.println("Invalid integer, try again: ");
+            System.out.println("Not integer, try again: ");
             scanner.nextLine();
         }
         int priceCreate = scanner.nextInt();
@@ -66,7 +68,6 @@ public static void main(String [] args){
     ticketArrayList.get(0).sell(customerArrayList.get(0));
     
     ticketArrayList.get(0).printTicketInfo();
-    
-    
+
     }
 }
