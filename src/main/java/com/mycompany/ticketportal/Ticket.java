@@ -44,18 +44,5 @@ public class Ticket {
         isSold = false;
     }
     
-    public void printTicketInfo(){
-        if (!isSold){
-            System.out.println("Nobody has bought ticket yet.");
-            System.out.println("Price: " + price);
-            System.out.println("Ticket sold: " + isSold + "\n");
-        }
-        else{
-            System.out.println("First name: " + owner.firstName);
-            System.out.println("Last name: " + owner.lastName);
-            System.out.println("Destination: " + destination);
-            System.out.println("Price: " + price);
-            System.out.println("Ticket sold: " + isSold+ "\n");
-        }
-    }
+    
 }

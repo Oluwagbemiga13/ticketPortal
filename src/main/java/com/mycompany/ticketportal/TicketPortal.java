@@ -10,6 +10,7 @@ import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.customerLastNameIdMap;
 import static com.mycompany.ticketportal.Ledger.customerTicktetMap;
 import static com.mycompany.ticketportal.Ledger.ticketArrayList;
+import static com.mycompany.ticketportal.Ledger.ticketDestinationIdMap;
 import java.util.Scanner;
 
 
@@ -70,11 +71,46 @@ public class TicketPortal {
             System.out.println("ID of customer " + c.firstName + " " + c.lastName + " is " + c.idCustomer + "\n");
         }
         else{
-            System.out.println("Last name not found. Try again.");
-            searchCustomer();
+            System.out.println("Last name not found.");
         }
  
         return c;
+    }
+    
+    public static Ticket searchTicket(){
+        String destination;
+        Ticket t = null;
+        
+        System.out.println("Method searching Ticket by destination.");
+        System.out.println("Enter destination: ");
+        Scanner scanner = new Scanner(System.in);
+        destination = scanner.nextLine();
+        
+        if(ticketDestinationIdMap.containsKey(destination)){
+            int idOfTicket = (ticketDestinationIdMap.get(destination));
+            t = ticketArrayList.get(idOfTicket);
+            printTicketInfo(t);
+        }
+        else{
+            System.out.println("Destination not found.");
+        }
+        
+        return t;
+    }
+    
+    public static void printTicketInfo(Ticket t){
+        if (!t.isSold){
+            System.out.println("Nobody has bought ticket yet.");
+            System.out.println("Price: " + t.price);
+            System.out.println("Ticket sold: " + t.isSold + "\n");
+        }
+        else{
+            System.out.println("First name: " + t.owner.firstName);
+            System.out.println("Last name: " + t.owner.lastName);
+            System.out.println("Destination: " + t.destination);
+            System.out.println("Price: " + t.price);
+            System.out.println("Ticket sold: " + t.isSold+ "\n");
+        }
     }
     
 public static void main(String [] args){
@@ -88,11 +124,14 @@ public static void main(String [] args){
     createCustomer();
     createTicket();
 
-    ticketArrayList.get(0).printTicketInfo();
+    printTicketInfo(ticketArrayList.get(0));
+    
     ticketArrayList.get(0).sell(customerArrayList.get(0));
     
-    ticketArrayList.get(0).printTicketInfo();
+    printTicketInfo(ticketArrayList.get(0));
     
-    System.out.println(searchCustomer().firstName);
+    //System.out.println(searchCustomer().firstName);
+    searchTicket();
+    
     }
 }
