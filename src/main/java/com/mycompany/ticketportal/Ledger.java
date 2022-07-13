@@ -18,12 +18,17 @@ public class Ledger {
     public static HashMap<Integer, Integer> customerTicktetMap ;
     public static  ArrayList<Customer> customerArrayList ;
     public static  ArrayList<Ticket> ticketArrayList;
+    
+    public static HashMap<String, Integer> customerLastNameIdMap ;
+    public static HashMap<String, Integer> ticketDestinationIdMap ;
 
     public Ledger() {
         customerTicktetMap = new HashMap<>();
         customerArrayList = new ArrayList<>();
         ticketArrayList = new ArrayList<>();
         
+        customerLastNameIdMap = new HashMap<>();
+        ticketDestinationIdMap = new HashMap<>();
     }
     
 }

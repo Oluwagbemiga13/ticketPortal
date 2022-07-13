@@ -24,6 +24,7 @@ public class Customer {
         idCustomer = counterOfCustomers + 1;
         counterOfCustomers++;
         Ledger.customerArrayList.add(idCustomer,this);
+        Ledger.customerLastNameIdMap.put(lastName, idCustomer);
     }
    
 }

@@ -7,6 +7,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.Ledger.customerArrayList;
+import static com.mycompany.ticketportal.Ledger.customerLastNameIdMap;
 import static com.mycompany.ticketportal.Ledger.customerTicktetMap;
 import static com.mycompany.ticketportal.Ledger.ticketArrayList;
 import java.util.Scanner;
@@ -53,6 +54,29 @@ public class TicketPortal {
         return new Ticket( destinationCreate,priceCreate);
     }
     
+    public static Customer searchCustomer(){
+        String lastName;
+        Customer c = null;
+        
+        System.out.println("Method searching Customer ID by last name.");
+        System.out.println("Enter last name: ");
+        Scanner scanner = new Scanner(System.in);
+        lastName = scanner.nextLine();
+        
+        if(customerLastNameIdMap.containsKey(lastName)){
+            int idOfCustomer = customerLastNameIdMap.get(lastName);
+            c = customerArrayList.get(idOfCustomer);
+        
+            System.out.println("ID of customer " + c.firstName + " " + c.lastName + " is " + c.idCustomer + "\n");
+        }
+        else{
+            System.out.println("Last name not found. Try again.");
+            searchCustomer();
+        }
+ 
+        return c;
+    }
+    
 public static void main(String [] args){
     System.out.println("Hello");
     //Scanner scanner = new Scanner(System.in);
@@ -68,6 +92,7 @@ public static void main(String [] args){
     ticketArrayList.get(0).sell(customerArrayList.get(0));
     
     ticketArrayList.get(0).printTicketInfo();
-
+    
+    System.out.println(searchCustomer().firstName);
     }
 }

@@ -25,13 +25,16 @@ public class Ticket {
         isSold = false;
         idTicket = counterOfTickets + 1;
         counterOfTickets++;
+        
         Ledger.ticketArrayList.add(idTicket,this);
+        Ledger.ticketDestinationIdMap.put(destination, idTicket);
     }
     
     public void sell(Customer c){
         owner = c; 
         isSold = true;
         Ledger.customerTicktetMap.put(c.idCustomer, idTicket);
+     
         System.out.println("Ticket ID: " + idTicket + " was sold to " + c.firstName + " " + c.lastName);
         System.out.println("\n");
     }
