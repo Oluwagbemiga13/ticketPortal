@@ -16,9 +16,9 @@ import java.util.HashMap;
 public class Ledger {
     
     public static HashMap<Integer, Integer> customerTicktetMap ;
+    
     public static  ArrayList<Customer> customerArrayList ;
     public static  ArrayList<Ticket> ticketArrayList;
-    
     public static HashMap<String, Integer> customerLastNameIdMap ;
     public static HashMap<String, Integer> ticketDestinationIdMap ;
 
