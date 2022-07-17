@@ -15,7 +15,9 @@ import static com.mycompany.ticketportal.Printer.printTicketInfo;
 import static com.mycompany.ticketportal.Printer.searchCustomerPrint;
 import static com.mycompany.ticketportal.Printer.searchTicketPrint;
 import static com.mycompany.ticketportal.Vendor.returnTicket;
+import java.awt.BorderLayout;
 import java.util.Scanner;
+import javax.swing.JFrame;
 
 
 /**
@@ -27,7 +29,9 @@ public class TicketPortal {
     // Method creating customer from user input
     public static Customer createCustomer(){
         
-        System.out.println("\nEneter first name: ");
+        System.out.println("\nMethod createCustomer() ");
+                
+        System.out.println("Enter first name: ");
         Scanner scanner = new Scanner(System.in);
         String firstNameCreate = scanner.nextLine();
         
@@ -40,7 +44,8 @@ public class TicketPortal {
     
     public static Ticket createTicket(){
         
-        System.out.println("\nEnter destination: ");
+        System.out.println("\nMethod createTicket()");
+        System.out.println("Enter destination: ");
         Scanner scanner = new Scanner(System.in);
         String destinationCreate = scanner.nextLine();
         
@@ -99,23 +104,14 @@ public class TicketPortal {
         return t;
     }
     
-    public static void printCustomerInfo(Customer c){
-        if(!customerArrayList.contains(c)){
-            System.out.println("Method printCustomerInfo.");
-            System.out.println("Customer not found.");
-        }
-        else{
-            System.out.println("Method printCustomerInfo.");
-            System.out.println("ID of customer: " + c.idCustomer);
-            System.out.println("First name: " + c.firstName);
-            System.out.println("Last name: " + c.lastName);
-        }
-    
-    }
-    
+
 public static void main(String [] args){
     System.out.println("Hello");
     //Scanner scanner = new Scanner(System.in);
+
+    FirstWindow firstWindow = new FirstWindow();
+    firstWindow.setVisible(true);
+   
     
     Ledger ledger = new Ledger();
     

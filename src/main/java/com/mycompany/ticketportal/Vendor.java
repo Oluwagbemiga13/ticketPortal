@@ -30,8 +30,10 @@ public class Vendor {
         t.owner = c; 
         t.isSold = true;
         Ledger.customerTicktetMap.put(c.idCustomer, t.idTicket);
+        
+        System.out.println("\nMethod sellTicket");
      
-        System.out.println("\nTicket ID: " + t.idTicket + " was sold to " + c.firstName + " " + c.lastName);
+        System.out.println("Ticket ID: " + t.idTicket + " was sold to " + c.firstName + " " + c.lastName);
     }
     
     // Method that searches KEY by it´s VALUE
@@ -44,19 +46,28 @@ public class Vendor {
     return null;
 }
     
-    
     public static void returnTicket(){
-        Ticket t = searchTicket();
         
-        int ticketKey = getKeyByValue(customerTicktetMap,t.idTicket);
+        System.out.println("\nMethod returnTicket");
+        Ticket t = searchTicket();
+
+        int ticketKey = -1;
+        try{
+            ticketKey = getKeyByValue(customerTicktetMap,t.idTicket);
+        }
+        catch(Exception NullPointerException){
+            System.out.println("Ticket not found.");
+        }
         customerTicktetMap.remove(ticketKey);
         
-        System.out.println("\nTicket ID: " + t.idTicket + "was returned by " + t.owner.firstName + t.owner.lastName);
-        
-        t.owner = null;
-        t.isSold = false;
-        // TEST print
-        printTicketInfo(t);
+        if(t == null){
+        }
+        else{
+            System.out.println("Ticket ID: " + t.idTicket + "was returned by " + t.owner.firstName + t.owner.lastName);
+            t.owner = null;
+            t.isSold = false;
+            printTicketInfo(t);
+        }
     }
     
 }

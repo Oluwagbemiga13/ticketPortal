@@ -10,7 +10,6 @@ import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.customerLastNameIdMap;
 import static com.mycompany.ticketportal.Ledger.ticketArrayList;
 import static com.mycompany.ticketportal.Ledger.ticketDestinationIdMap;
-import static com.mycompany.ticketportal.TicketPortal.printCustomerInfo;
 import java.util.Scanner;
 
 /**
@@ -75,6 +74,20 @@ public class Printer {
         }
  
         return c;
+    }
+    
+    public static void printCustomerInfo(Customer c){
+        if(!customerArrayList.contains(c)){
+            System.out.println("Method printCustomerInfo.");
+            System.out.println("Customer not found.");
+        }
+        else{
+            System.out.println("Method printCustomerInfo.");
+            System.out.println("ID of customer: " + c.idCustomer);
+            System.out.println("First name: " + c.firstName);
+            System.out.println("Last name: " + c.lastName);
+        }
+    
     }
     
 }
