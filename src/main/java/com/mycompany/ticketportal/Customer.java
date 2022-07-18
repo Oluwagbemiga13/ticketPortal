@@ -14,9 +14,10 @@ import java.util.Scanner;
  */
 public class Customer {
     int idCustomer;
-    String firstName;
-    String lastName;
+    public String firstName;
+    public String lastName;
     public static int counterOfCustomers = -1;
+    public String password;
 
     public Customer(String firstName, String lastName){
         this.firstName = firstName;
@@ -26,5 +27,7 @@ public class Customer {
         Ledger.customerArrayList.add(idCustomer,this);
         Ledger.customerLastNameIdMap.put(lastName, idCustomer);
     }
+    
+    
    
 }

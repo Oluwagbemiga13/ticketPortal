@@ -12,11 +12,23 @@ package com.mycompany.ticketportal;
  */
 public class FirstWindow extends javax.swing.JFrame {
 
+    
+    // creates LogInWindow and closes FirstWindow
+    public void createLogInWindow(){
+        
+    }
+    
+    public void createAccountWIndow(){
+        
+    }
+    
     /**
      * Creates new form FirstWindow
-     */
+     * 
+     */        
     public FirstWindow() {
         initComponents();
+        
     }
 
     /**
