@@ -9,6 +9,7 @@ package com.mycompany.ticketportal;
 import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.customerLastNameIdMap;
 import static com.mycompany.ticketportal.Ledger.customerTicktetMap;
+import static com.mycompany.ticketportal.Ledger.privateCustomerArrayList;
 import static com.mycompany.ticketportal.Ledger.ticketArrayList;
 import static com.mycompany.ticketportal.Ledger.ticketDestinationIdMap;
 import static com.mycompany.ticketportal.Printer.printTicketInfo;
@@ -26,18 +27,35 @@ import javax.swing.JFrame;
  */
 public class TicketPortal {
     
+    public static PrivateCustomer createNewAcc (){
+        
+        System.out.println("Enter first name: ");
+        Scanner scanner = new Scanner(System.in);
+        String privateFirstName = scanner.nextLine();
+        
+        System.out.println("Enter last name: ");
+        String privateLastName = scanner.nextLine();
+        
+        System.out.println("Enter login: ");
+        String login = scanner.nextLine();
+        
+        System.out.println("Enter password: ");
+        String privatePassword = scanner.nextLine();
+
+        return new PrivateCustomer(privatePassword,  login,  privateFirstName, privateLastName);
+    
+    }
     // Method creating customer from user input
-    public static Customer createCustomer(){
+    public static Customer createCustomer(PrivateCustomer p){
+        
+        int privateCustomerArrayListSize = privateCustomerArrayList.size() - 1;
+        p = Ledger.privateCustomerArrayList.get(privateCustomerArrayListSize);
         
         System.out.println("\nMethod createCustomer() ");
                 
-        System.out.println("Enter first name: ");
-        Scanner scanner = new Scanner(System.in);
-        String firstNameCreate = scanner.nextLine();
+        String firstNameCreate = p.privateFirstName;
         
-        System.out.println("Eneter last name: ");
-        String lastNameCreate = scanner.nextLine();
-  
+        String lastNameCreate = p.privateLastName;
 
         return new Customer(firstNameCreate, lastNameCreate);
     }
@@ -119,7 +137,7 @@ public static void main(String [] args){
      
     System.out.println(customerTicktetMap.values());
     
-    createCustomer();
+    createNewAcc();
     createTicket();
 
     printTicketInfo(ticketArrayList.get(0));

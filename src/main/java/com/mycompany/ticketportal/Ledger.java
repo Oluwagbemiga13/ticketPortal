@@ -19,16 +19,22 @@ public class Ledger {
     
     public static  ArrayList<Customer> customerArrayList ;
     public static  ArrayList<Ticket> ticketArrayList;
+    public static  ArrayList<PrivateCustomer> privateCustomerArrayList;
+            
     public static HashMap<String, Integer> customerLastNameIdMap ;
     public static HashMap<String, Integer> ticketDestinationIdMap ;
+    //public static HashMap<Integer, PrivateCustomer> idPrivateCustomerMap;
 
     public Ledger() {
         customerTicktetMap = new HashMap<>();
         customerArrayList = new ArrayList<>();
         ticketArrayList = new ArrayList<>();
+        privateCustomerArrayList = new ArrayList<>();
         
         customerLastNameIdMap = new HashMap<>();
         ticketDestinationIdMap = new HashMap<>();
+        //idPrivateCustomerMap = new HashMap<>();
+        
     }
     
 }

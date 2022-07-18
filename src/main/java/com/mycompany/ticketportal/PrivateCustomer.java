@@ -22,16 +22,15 @@ public class PrivateCustomer {
     String privateFirstName;
     String privateLastName;
     
-    public static PrivateCustomer createPrivateCustomer(Customer c){
-        
-        
-        return new PrivateCustomer();
-    }
-    
-    public PrivateCustomer(){
+       
+    public PrivateCustomer(String privatePassword, String login, String privateFirstName, String privateLastName){
 
         this.arrayPosition = arrayPosition;
+        this.privatePassword = privatePassword;
+        this.login = login;
+        this.privateLastName = privateLastName;
         arrayPosition++;
+        Ledger.privateCustomerArrayList.add(this);
         }
     
     }
