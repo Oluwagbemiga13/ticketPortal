@@ -6,9 +6,12 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+
+import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
 import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.customerLastNameIdMap;
 import static com.mycompany.ticketportal.Ledger.customerTicktetMap;
+import static com.mycompany.ticketportal.Ledger.loginPasswordMap;
 import static com.mycompany.ticketportal.Ledger.privateCustomerArrayList;
 import static com.mycompany.ticketportal.Ledger.ticketArrayList;
 import static com.mycompany.ticketportal.Ledger.ticketDestinationIdMap;
@@ -45,6 +48,9 @@ public class TicketPortal {
         String privatePassword = password;
         String privateFirstName = firstName;
         String privateLastName =   lastName; 
+        
+        loginPasswordMap.put(login, password);
+        
         return new PrivateCustomer(privatePassword,  login,  privateFirstName, privateLastName);
     
     }
@@ -131,17 +137,28 @@ public class TicketPortal {
         return t;
     }
     
-    public static void createFirtsWindow(){
-        FirstWindow firstWindow = new FirstWindow();
-        firstWindow.setVisible(true);
+    public static void logIn(String login, String password){
+        if(loginPasswordMap.containsKey(login)){
+            if (loginPasswordMap.get(login).equals(password)){
+                System.out.println("You have been loged in.");
+            }
+            else {
+               System.out.println("Incorect login or password."); 
+            }     
+        }
+        else{
+                System.out.println("Login doesn´t exist.");
+        } 
     }
+    
+    
     
 
 public static void main(String [] args){
     System.out.println("Hello");
     //Scanner scanner = new Scanner(System.in);
 
-    createFirtsWindow();
+    createFirstWindow();
    
     
     Ledger ledger = new Ledger();

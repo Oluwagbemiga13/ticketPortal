@@ -23,7 +23,8 @@ public class Ledger {
             
     public static HashMap<String, Integer> customerLastNameIdMap ;
     public static HashMap<String, Integer> ticketDestinationIdMap ;
-    //public static HashMap<Integer, PrivateCustomer> idPrivateCustomerMap;
+    public static HashMap<String, String> loginPasswordMap;
+    
 
     public Ledger() {
         customerTicktetMap = new HashMap<>();
@@ -33,7 +34,7 @@ public class Ledger {
         
         customerLastNameIdMap = new HashMap<>();
         ticketDestinationIdMap = new HashMap<>();
-        //idPrivateCustomerMap = new HashMap<>();
+        loginPasswordMap = new HashMap<>();
         
     }
     

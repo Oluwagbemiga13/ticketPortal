@@ -21,10 +21,13 @@ public class FirstWindow extends javax.swing.JFrame {
     public void createAccountWindow(){
         
         CreateAccountWindow createAccountWindow = new CreateAccountWindow();
-        createAccountWindow.setVisible(true);
+        createAccountWindow.setVisible(true); 
+    }
+    
+    public void createLoginWindow(){
         
-        
-        
+        LogInWindow logInWindow = new LogInWindow();
+        logInWindow.setVisible(true); 
     }
     
     /**
@@ -107,6 +110,8 @@ public class FirstWindow extends javax.swing.JFrame {
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
         // TODO add your handling code here:
+        createLoginWindow();
+        this.dispose();
     }//GEN-LAST:event_logInButtonActionPerformed
 
     /**

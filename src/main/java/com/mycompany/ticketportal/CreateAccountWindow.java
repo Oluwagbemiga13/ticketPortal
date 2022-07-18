@@ -6,8 +6,8 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
 import static com.mycompany.ticketportal.TicketPortal.createAcc;
-import static com.mycompany.ticketportal.TicketPortal.createFirtsWindow;
 import javax.swing.JTextField;
 
 /**
@@ -182,11 +182,13 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         Printer.printCustomerInfo(Ledger.customerArrayList.get(createdCustomerCounter));
         System.out.println("Counter: " + createdCustomerCounter);
         createdCustomerCounter++;
+        createFirstWindow();
+        this.dispose();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        createFirtsWindow();
+        createFirstWindow();
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
