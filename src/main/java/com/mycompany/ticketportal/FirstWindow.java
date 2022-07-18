@@ -18,7 +18,12 @@ public class FirstWindow extends javax.swing.JFrame {
         
     }
     
-    public void createAccountWIndow(){
+    public void createAccountWindow(){
+        
+        CreateAccountWindow createAccountWindow = new CreateAccountWindow();
+        createAccountWindow.setVisible(true);
+        
+        
         
     }
     
@@ -95,6 +100,8 @@ public class FirstWindow extends javax.swing.JFrame {
 
     private void createAccountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAccountButtonActionPerformed
         // TODO add your handling code here:
+        createAccountWindow();
+        this.dispose();
         
     }//GEN-LAST:event_createAccountButtonActionPerformed
 

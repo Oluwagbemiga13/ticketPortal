@@ -29,6 +29,7 @@ public class PrivateCustomer {
         this.privatePassword = privatePassword;
         this.login = login;
         this.privateLastName = privateLastName;
+        this.privateFirstName = privateFirstName;
         arrayPosition++;
         Ledger.privateCustomerArrayList.add(this);
         }

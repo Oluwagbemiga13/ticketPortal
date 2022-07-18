@@ -27,29 +27,32 @@ import javax.swing.JFrame;
  */
 public class TicketPortal {
     
-    public static PrivateCustomer createNewAcc (){
+    public static PrivateCustomer createPrivateCustomer(String firstName, String lastName, String login, String password){
         
-        System.out.println("Enter first name: ");
-        Scanner scanner = new Scanner(System.in);
-        String privateFirstName = scanner.nextLine();
+        //System.out.println("Enter first name: ");
+        //Scanner scanner = new Scanner(System.in);
+        //String privateFirstName = scanner.nextLine();
         
-        System.out.println("Enter last name: ");
-        String privateLastName = scanner.nextLine();
+        //System.out.println("Enter last name: ");
+        //String privateLastName = scanner.nextLine();
         
-        System.out.println("Enter login: ");
-        String login = scanner.nextLine();
+        //System.out.println("Enter login: ");
+        //String login = scanner.nextLine();
         
-        System.out.println("Enter password: ");
-        String privatePassword = scanner.nextLine();
-
+        //System.out.println("Enter password: ");
+        //String privatePassword = scanner.nextLine();
+        
+        String privatePassword = password;
+        String privateFirstName = firstName;
+        String privateLastName =   lastName; 
         return new PrivateCustomer(privatePassword,  login,  privateFirstName, privateLastName);
     
     }
     // Method creating customer from user input
-    public static Customer createCustomer(PrivateCustomer p){
+    public static Customer createCustomer(){
         
         int privateCustomerArrayListSize = privateCustomerArrayList.size() - 1;
-        p = Ledger.privateCustomerArrayList.get(privateCustomerArrayListSize);
+        PrivateCustomer p = Ledger.privateCustomerArrayList.get(privateCustomerArrayListSize);
         
         System.out.println("\nMethod createCustomer() ");
                 
@@ -58,6 +61,12 @@ public class TicketPortal {
         String lastNameCreate = p.privateLastName;
 
         return new Customer(firstNameCreate, lastNameCreate);
+    }
+    
+    public static void createAcc(String firstName, String lastName,String login, String password){
+      
+        createPrivateCustomer( firstName, lastName, login, password);
+        createCustomer();
     }
     
     public static Ticket createTicket(){
@@ -122,13 +131,17 @@ public class TicketPortal {
         return t;
     }
     
+    public static void createFirtsWindow(){
+        FirstWindow firstWindow = new FirstWindow();
+        firstWindow.setVisible(true);
+    }
+    
 
 public static void main(String [] args){
     System.out.println("Hello");
     //Scanner scanner = new Scanner(System.in);
 
-    FirstWindow firstWindow = new FirstWindow();
-    firstWindow.setVisible(true);
+    createFirtsWindow();
    
     
     Ledger ledger = new Ledger();
@@ -137,7 +150,7 @@ public static void main(String [] args){
      
     System.out.println(customerTicktetMap.values());
     
-    createNewAcc();
+    //createAcc();
     createTicket();
 
     printTicketInfo(ticketArrayList.get(0));
