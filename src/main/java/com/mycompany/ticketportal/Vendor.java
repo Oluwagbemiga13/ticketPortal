@@ -26,7 +26,7 @@ public class Vendor {
         idVendor++;
     }
     
-    public void sell(Customer c, Ticket t){
+    public static void sell(Customer c, Ticket t){
         t.owner = c; 
         t.isSold = true;
         Ledger.customerTicktetMap.put(c.idCustomer, t.idTicket);

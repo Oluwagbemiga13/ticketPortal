@@ -21,11 +21,7 @@ public class LogInWindow extends javax.swing.JFrame {
      * Creates new form LogInWindow
      */
     
-    public static void createCustomerMainMenuWindow(){
-        
-        CustomerMainMenuWindow customerMainMenuWindow = new CustomerMainMenuWindow();
-        customerMainMenuWindow.setVisible(true); 
-    }
+    
     
     public LogInWindow() {
         initComponents();

@@ -27,4 +27,15 @@ public class GuiHandler {
         ticketInfoWindow.setVisible(true);
     }
     
+    public static void createAddedToChartWindow(){
+        AddedToCartWindow addedToCartWindow = new AddedToCartWindow();
+        addedToCartWindow.setVisible(true);
+    }
+    
+    public static void createCustomerMainMenuWindow(){
+        
+        CustomerMainMenuWindow customerMainMenuWindow = new CustomerMainMenuWindow();
+        customerMainMenuWindow.setVisible(true); 
+    }
+    
 }
