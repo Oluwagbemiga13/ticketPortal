@@ -125,18 +125,18 @@ public class TicketPortal {
         return c;
     }
     
-    public static Ticket searchTicket(){
-        String destination;
+    public static Ticket searchTicket(String destination){
         Ticket t = null;
-        
+        /*
         System.out.println("\nMethod searching Ticket by destination.");
         System.out.println("Enter destination: ");
         Scanner scanner = new Scanner(System.in);
         destination = scanner.nextLine();
-        
+        */
         if(ticketDestinationIdMap.containsKey(destination)){
             int idOfTicket = (ticketDestinationIdMap.get(destination));
             t = ticketArrayList.get(idOfTicket);
+            Printer.printTicketInfo(t);
         }
         else{
             System.out.println("\nDestination not found.");
@@ -175,12 +175,13 @@ public static void main(String [] args){
     //Scanner scanner = new Scanner(System.in);
 
     createFirstWindow();
-   
-    
+
     Ledger ledger = new Ledger();
     
     Vendor vendor = new Vendor();
-     
+    
+    Ticket testTicket = new Ticket("Lagos", 20000);
+    
     System.out.println(customerTicktetMap.values());
     
     //createAcc();
