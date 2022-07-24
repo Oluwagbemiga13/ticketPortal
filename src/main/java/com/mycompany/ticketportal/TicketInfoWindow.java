@@ -7,6 +7,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createAddedToChartWindow;
+import static com.mycompany.ticketportal.GuiHandler.createSearchTicketWindow;
 import static com.mycompany.ticketportal.Printer.printTicketInfo;
 import static com.mycompany.ticketportal.TicketPortal.currentTicket;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
@@ -56,6 +57,11 @@ public class TicketInfoWindow extends javax.swing.JFrame {
         });
 
         backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -100,6 +106,12 @@ public class TicketInfoWindow extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_addToCartButtonActionPerformed
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        createSearchTicketWindow();
+        this.dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     /**
      * @param args the command line arguments

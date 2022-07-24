@@ -6,6 +6,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
 import static com.mycompany.ticketportal.TicketPortal.currentTicket;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
 import static com.mycompany.ticketportal.Vendor.sell;
@@ -37,7 +38,7 @@ public class AddedToCartWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Ticket to " + currentTicket.destination + " for "  + currentTicket.price + "$.");
+        jLabel1.setText("Ticket to " + currentTicket.destination + " for "  + currentTicket.price + "$ was added to shoping cart.");
 
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -54,20 +55,20 @@ public class AddedToCartWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(139, 139, 139)
-                        .addComponent(okButton)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addGap(165, 165, 165)
+                        .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(okButton)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -77,7 +78,8 @@ public class AddedToCartWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         Vendor.sell(logedInCustomer, currentTicket);
         currentTicket = null;
-        
+        createCustomerMainMenuWindow();
+        this.dispose();
         
     }//GEN-LAST:event_okButtonActionPerformed
 
