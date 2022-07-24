@@ -24,6 +24,7 @@ public class Ledger {
     public static HashMap<String, Integer> customerLastNameIdMap ;
     public static HashMap<String, Integer> ticketDestinationIdMap ;
     public static HashMap<String, String> loginPasswordMap;
+    public static HashMap<String, Integer> loginPositionMap;
     
 
     public Ledger() {
@@ -35,6 +36,7 @@ public class Ledger {
         customerLastNameIdMap = new HashMap<>();
         ticketDestinationIdMap = new HashMap<>();
         loginPasswordMap = new HashMap<>();
+        loginPositionMap = new HashMap<>();
         
     }
     

@@ -30,8 +30,11 @@ public class PrivateCustomer {
         this.login = login;
         this.privateLastName = privateLastName;
         this.privateFirstName = privateFirstName;
-        arrayPosition++;
+        
+        Ledger.loginPositionMap.put(login, arrayPosition);
         Ledger.privateCustomerArrayList.add(this);
+        
+        arrayPosition++;
         }
     
     }

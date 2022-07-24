@@ -4,6 +4,8 @@ $RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
 $RequestHeader set AuditDateTime expr=%{TIME}
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
+//Hashmap loginPositionMap not functioning?? Create acc functioning
 package com.mycompany.ticketportal;
 
 
@@ -12,9 +14,11 @@ import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.customerLastNameIdMap;
 import static com.mycompany.ticketportal.Ledger.customerTicktetMap;
 import static com.mycompany.ticketportal.Ledger.loginPasswordMap;
+import static com.mycompany.ticketportal.Ledger.loginPositionMap;
 import static com.mycompany.ticketportal.Ledger.privateCustomerArrayList;
 import static com.mycompany.ticketportal.Ledger.ticketArrayList;
 import static com.mycompany.ticketportal.Ledger.ticketDestinationIdMap;
+import static com.mycompany.ticketportal.LogInWindow.createCustomerMainMenuWindow;
 import static com.mycompany.ticketportal.Printer.printTicketInfo;
 import static com.mycompany.ticketportal.Printer.searchCustomerPrint;
 import static com.mycompany.ticketportal.Printer.searchTicketPrint;
@@ -29,6 +33,9 @@ import javax.swing.JFrame;
  * @author Daniel
  */
 public class TicketPortal {
+    
+    public static Customer logedInCustomer = null;
+    public static PrivateCustomer privateLogedInCustomer = null;
     
     public static PrivateCustomer createPrivateCustomer(String firstName, String lastName, String login, String password){
         
@@ -54,11 +61,12 @@ public class TicketPortal {
         return new PrivateCustomer(privatePassword,  login,  privateFirstName, privateLastName);
     
     }
-    // Method creating customer from user input
+    
+    // Method creating customer from form input
     public static Customer createCustomer(){
         
-        int privateCustomerArrayListSize = privateCustomerArrayList.size() - 1;
-        PrivateCustomer p = Ledger.privateCustomerArrayList.get(privateCustomerArrayListSize);
+        int privateCustomerArrayListPosition = privateCustomerArrayList.size() - 1;
+        PrivateCustomer p = Ledger.privateCustomerArrayList.get(privateCustomerArrayListPosition);
         
         System.out.println("\nMethod createCustomer() ");
                 
@@ -69,8 +77,8 @@ public class TicketPortal {
         return new Customer(firstNameCreate, lastNameCreate);
     }
     
+    // Method combining createPrivateCustomer() and createCustomer() 
     public static void createAcc(String firstName, String lastName,String login, String password){
-      
         createPrivateCustomer( firstName, lastName, login, password);
         createCustomer();
     }
@@ -141,6 +149,13 @@ public class TicketPortal {
         if(loginPasswordMap.containsKey(login)){
             if (loginPasswordMap.get(login).equals(password)){
                 System.out.println("You have been loged in.");
+                int position = loginPositionMap.get(login);
+                logedInCustomer = customerArrayList.get(position);
+                privateLogedInCustomer = privateCustomerArrayList.get(position);
+                System.out.println("Login: " + privateLogedInCustomer.login);
+                System.out.println("Customer : " + logedInCustomer.firstName + " " + logedInCustomer.lastName);
+                createCustomerMainMenuWindow();
+                
             }
             else {
                System.out.println("Incorect login or password."); 
@@ -148,7 +163,8 @@ public class TicketPortal {
         }
         else{
                 System.out.println("Login doesn´t exist.");
-        } 
+        }
+        
     }
     
     

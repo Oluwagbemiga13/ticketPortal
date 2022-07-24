@@ -7,6 +7,9 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
+import static com.mycompany.ticketportal.Ledger.customerArrayList;
+import static com.mycompany.ticketportal.Ledger.loginPositionMap;
+import static com.mycompany.ticketportal.Ledger.privateCustomerArrayList;
 import static com.mycompany.ticketportal.TicketPortal.createAcc;
 import javax.swing.JTextField;
 
@@ -44,6 +47,7 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         passwordField = new javax.swing.JTextField();
+        testButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +97,13 @@ public class CreateAccountWindow extends javax.swing.JFrame {
             }
         });
 
+        testButton.setText("TEST");
+        testButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,7 +121,9 @@ public class CreateAccountWindow extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(56, 56, 56)
+                                .addComponent(testButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -123,7 +136,7 @@ public class CreateAccountWindow extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +148,8 @@ public class CreateAccountWindow extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(testButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,9 +193,9 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         String password = passwordField.getText();
 
         createAcc(firstName, lastName, login, password);
-        Printer.printCustomerInfo(Ledger.customerArrayList.get(createdCustomerCounter));
-        System.out.println("Counter: " + createdCustomerCounter);
-        createdCustomerCounter++;
+        Printer.printCustomerInfo(Ledger.customerArrayList.get(customerArrayList.size()-1));
+        System.out.println("Counter: " + (customerArrayList.size()-1));
+        //createdCustomerCounter++;
         createFirstWindow();
         this.dispose();
     }//GEN-LAST:event_okButtonActionPerformed
@@ -191,6 +205,31 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         createFirstWindow();
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Customer array:");
+        for(int i = 0; i < customerArrayList.size(); i++){
+        System.out.println(Ledger.customerArrayList.get(i).firstName);
+        System.out.println(Ledger.customerArrayList.get(i).lastName);
+        System.out.println(Ledger.customerArrayList.get(i).idCustomer);
+        }
+        
+        System.out.println("Private customer array:");
+        for(int i = 0; i < privateCustomerArrayList.size(); i++){
+        System.out.println(Ledger.privateCustomerArrayList.get(i).login);
+        System.out.println(Ledger.privateCustomerArrayList.get(i).privateFirstName);
+        System.out.println(Ledger.privateCustomerArrayList.get(i).privateLastName);
+        System.out.println(Ledger.privateCustomerArrayList.get(i).privatePassword);
+        }
+        
+        System.out.println("Login position map:");
+        for(int i = 0; i < loginPositionMap.size(); i++){
+        System.out.print(Ledger.privateCustomerArrayList.get(i).login + " ");
+        System.out.println(Ledger.loginPositionMap.get(Ledger.privateCustomerArrayList.get(i).login));
+        }
+
+    }//GEN-LAST:event_testButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,5 +277,6 @@ public class CreateAccountWindow extends javax.swing.JFrame {
     private javax.swing.JTextField loginField;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField passwordField;
+    private javax.swing.JButton testButton;
     // End of variables declaration//GEN-END:variables
 }
