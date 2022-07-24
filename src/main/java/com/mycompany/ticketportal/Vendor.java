@@ -45,7 +45,7 @@ public class Vendor {
     }
     return null;
 }
-    
+    /*
     public static void returnTicket(){
         
         System.out.println("\nMethod returnTicket");
@@ -68,6 +68,6 @@ public class Vendor {
             t.isSold = false;
             printTicketInfo(t);
         }
-    }
+    }*/
     
 }

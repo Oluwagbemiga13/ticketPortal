@@ -22,7 +22,7 @@ import static com.mycompany.ticketportal.LogInWindow.createCustomerMainMenuWindo
 import static com.mycompany.ticketportal.Printer.printTicketInfo;
 import static com.mycompany.ticketportal.Printer.searchCustomerPrint;
 import static com.mycompany.ticketportal.Printer.searchTicketPrint;
-import static com.mycompany.ticketportal.Vendor.returnTicket;
+//import static com.mycompany.ticketportal.Vendor.returnTicket;
 import java.awt.BorderLayout;
 import java.util.Scanner;
 import javax.swing.JFrame;
@@ -200,7 +200,9 @@ public static void main(String [] args){
     
     searchCustomerPrint();
     
-    returnTicket();
+    //returnTicket();
+    
+    
 
     }
 }

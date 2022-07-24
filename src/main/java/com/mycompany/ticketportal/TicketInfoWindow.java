@@ -8,6 +8,7 @@ package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.Printer.printTicketInfo;
 import static com.mycompany.ticketportal.TicketPortal.currentTicket;
+import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
 
 /**
  *
@@ -33,12 +34,26 @@ public class TicketInfoWindow extends javax.swing.JFrame {
 
         destinationLabel = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
+        isSoldLabel = new javax.swing.JLabel();
+        addToCartButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         destinationLabel.setText("Destination: " + currentTicket.destination);
 
         priceLabel.setText("Price: " + currentTicket.price);
+
+        isSoldLabel.setText("Is sold: " + currentTicket.isSold);
+
+        addToCartButton.setText("Add to cart");
+        addToCartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addToCartButtonActionPerformed(evt);
+            }
+        });
+
+        backButton.setText("Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -47,22 +62,39 @@ public class TicketInfoWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(isSoldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(60, Short.MAX_VALUE))
+                    .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(addToCartButton)
+                        .addGap(39, 39, 39)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(priceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(isSoldLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addToCartButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
+        // TODO add your handling code here:
+        logedInCustomer.customerCart.add(currentTicket);
+        
+    }//GEN-LAST:event_addToCartButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,7 +132,10 @@ public class TicketInfoWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addToCartButton;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel destinationLabel;
+    private javax.swing.JLabel isSoldLabel;
     private javax.swing.JLabel priceLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,6 +19,7 @@ public class Customer {
     public String lastName;
     public static int counterOfCustomers;
     public String password;
+    public ArrayList<Ticket> customerCart;
 
     public Customer(String firstName, String lastName){
         this.firstName = firstName;
@@ -26,6 +28,7 @@ public class Customer {
         counterOfCustomers++;
         Ledger.customerArrayList.add(idCustomer,this);
         Ledger.customerLastNameIdMap.put(lastName, idCustomer);
+        customerCart = new ArrayList<>();
     }
     
     
