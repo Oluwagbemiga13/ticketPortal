@@ -18,11 +18,13 @@ import java.util.Scanner;
  */
 public class Printer {
     
-    public static void printTicketInfo(Ticket t){
+    public static String printTicketInfo(Ticket t){
+        String info = null;
         if (!t.isSold){
             System.out.println("\nNobody has bought ticket yet.");
             System.out.println("Price: " + t.price);
             System.out.println("Ticket sold: " + t.isSold + "\n");
+            info = "\nDestination:" + t.destination +"\n Price: " +  t.price + "\nTicket sold:" + t.isSold;
         }
         else{
             System.out.println("\nFirst name: " + t.owner.firstName);
@@ -30,7 +32,9 @@ public class Printer {
             System.out.println("Destination: " + t.destination);
             System.out.println("Price: " + t.price);
             System.out.println("Ticket sold: " + t.isSold+ "\n");
+            info = "\nDestination:" + t.destination +"\n Price: " +  t.price + "\nTicket sold:" + t.isSold;
         }
+        return info;
     }
     
     public static Ticket searchTicketPrint(){

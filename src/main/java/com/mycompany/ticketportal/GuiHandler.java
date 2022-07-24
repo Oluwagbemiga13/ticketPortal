@@ -22,4 +22,9 @@ public class GuiHandler {
         searchTicketWindow.setVisible(true);
     }
     
+    public static void createTicketInfoWindow(){
+        TicketInfoWindow ticketInfoWindow = new TicketInfoWindow();
+        ticketInfoWindow.setVisible(true);
+    }
+    
 }

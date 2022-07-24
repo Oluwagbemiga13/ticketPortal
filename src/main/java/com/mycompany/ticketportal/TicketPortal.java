@@ -36,6 +36,7 @@ public class TicketPortal {
     
     public static Customer logedInCustomer = null;
     public static PrivateCustomer privateLogedInCustomer = null;
+    public static Ticket currentTicket = null;
     
     public static PrivateCustomer createPrivateCustomer(String firstName, String lastName, String login, String password){
         

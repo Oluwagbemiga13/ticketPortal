@@ -6,7 +6,9 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createTicketInfoWindow;
 import static com.mycompany.ticketportal.TicketPortal.searchTicket;
+import static com.mycompany.ticketportal.TicketPortal.currentTicket;
 
 /**
  *
@@ -101,7 +103,11 @@ public class SearchTicketWindow extends javax.swing.JFrame {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
         String destination = destinationField.getText();
-        Ticket t = searchTicket(destination);
+        currentTicket = searchTicket(destination);
+        if(currentTicket!=null){
+        createTicketInfoWindow();
+        this.dispose();
+        }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
