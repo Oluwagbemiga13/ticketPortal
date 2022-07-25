@@ -27,6 +27,7 @@ public class Vendor {
     }
     
     public static void sell(Customer c, Ticket t){
+        if(!t.isSold){
         t.owner = c; 
         t.isSold = true;
         Ledger.customerTicktetMap.put(c.idCustomer, t.idTicket);
@@ -34,6 +35,8 @@ public class Vendor {
         System.out.println("\nMethod sellTicket");
      
         System.out.println("Ticket ID: " + t.idTicket + " was sold to " + c.firstName + " " + c.lastName);
+        }
+
     }
     
     // Method that searches KEY by it´s VALUE
