@@ -19,6 +19,21 @@ import javax.swing.JTextField;
  */
 public class CreateAccountWindow extends javax.swing.JFrame {
     
+    public boolean isExistingLogin(){
+        boolean isExisting = false;
+        String login = loginField.getText();
+        
+        for(int i = 0; i < customerArrayList.size(); i++){
+            String existingLogin = (privateCustomerArrayList.get(i)).login;
+            if(existingLogin.equals(login)){
+                isExisting = true;
+                loginValidLabel.setText("Login exists");
+                
+            }
+        }
+        return isExisting;
+    }
+    
     public void colectDataCreateAccountWindow(){
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
@@ -39,6 +54,7 @@ public class CreateAccountWindow extends javax.swing.JFrame {
  
         if(firstName.matches("\\d+")){
             isValid = false;
+            firstNameValidLabel.setText("No numbers allowed");
         }
         
         return isValid;
@@ -62,7 +78,10 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         if(login.length()<=5){
             isValid = false;
         }
-        
+        if(isExistingLogin()){
+            isValid = false;
+        }
+
         return isValid;
     }
     
@@ -70,15 +89,16 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         boolean isValid = true;
         String password = passwordField.getText();
         
-        if(password.length()<=6){
+        if(password.length() < 6){
             isValid = false;
-        }
+        }/*
         if(!(password.matches("\\d+"))){
             isValid = false;
         }
-        if(!password.matches(".*[a-z].*")){
+        if(!(password.matches(".*[a-z].*"))){
             isValid = false;
-        }
+        }*/
+        
         return isValid;
     }
     
@@ -111,11 +131,12 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         passwordField = new javax.swing.JTextField();
-        testButton = new javax.swing.JButton();
+        testPrintButton = new javax.swing.JButton();
         firstNameValidLabel = new javax.swing.JLabel();
         lastNameValidLabel = new javax.swing.JLabel();
         loginValidLabel = new javax.swing.JLabel();
         passwordValidLabel = new javax.swing.JLabel();
+        testFillButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,10 +186,10 @@ public class CreateAccountWindow extends javax.swing.JFrame {
             }
         });
 
-        testButton.setText("TEST");
-        testButton.addActionListener(new java.awt.event.ActionListener() {
+        testPrintButton.setText("TEST Print");
+        testPrintButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testButtonActionPerformed(evt);
+                testPrintButtonActionPerformed(evt);
             }
         });
 
@@ -184,53 +205,57 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         passwordValidLabel.setForeground(new java.awt.Color(255, 0, 0));
         passwordValidLabel.setText("Invalid password");
 
+        testFillButton.setText("TEST Fill");
+        testFillButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testFillButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(40, 40, 40)
-                                .addComponent(passwordValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 16, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lastNameValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(firstNameValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(16, 16, 16)))
-                        .addGap(56, 56, 56))
-                    .addGroup(layout.createSequentialGroup()
+                                .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(lastNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lastNameValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(firstNameValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(passwordValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(loginField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(loginValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(loginValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 159, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(177, 177, 177)
                 .addComponent(okButton)
                 .addGap(18, 18, 18)
                 .addComponent(backButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(testButton)
-                .addGap(33, 33, 33))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(testPrintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(testFillButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,12 +287,13 @@ public class CreateAccountWindow extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(okButton)
-                            .addComponent(backButton))
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(backButton)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(testPrintButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(testButton)
-                        .addGap(34, 34, 34))))
+                        .addComponent(testFillButton)))
+                .addGap(32, 32, 32))
         );
 
         firstNameValidLabel.setVisible(false);
@@ -296,26 +322,28 @@ public class CreateAccountWindow extends javax.swing.JFrame {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
-        if(validFirstName() && validFirstName() && validLogin()){
-            colectDataCreateAccountWindow();
-        }
-        
-        if(!validFirstName()){
-            firstNameValidLabel.setVisible(true);
-        }
-        
-        if(!validLastName()){
-            lastNameValidLabel.setVisible(true);
-        }
-        
-        if(!validLogin()){
-            loginValidLabel.setVisible(true);
-        }
-        if(!validLogin()){
-            passwordValidLabel.setVisible(true);
-        }
+        //colectDataCreateAccountWindow();
         
         
+        if(validFirstName() && validLastName() && validLogin() && validPassword()){
+            this.colectDataCreateAccountWindow();
+        }
+        else{
+            if(!validFirstName()){
+                firstNameValidLabel.setVisible(true);
+            }
+        
+            if(!validLastName()){
+                lastNameValidLabel.setVisible(true);
+            }
+        
+            if(!validLogin()){
+                loginValidLabel.setVisible(true);
+            }
+            if(!validPassword()){
+                passwordValidLabel.setVisible(true);
+            }
+        } 
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -324,7 +352,7 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+    private void testPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testPrintButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("Customer array:");
         for(int i = 0; i < customerArrayList.size(); i++){
@@ -347,7 +375,15 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         System.out.println(Ledger.loginPositionMap.get(Ledger.privateCustomerArrayList.get(i).login));
         }
 
-    }//GEN-LAST:event_testButtonActionPerformed
+    }//GEN-LAST:event_testPrintButtonActionPerformed
+
+    private void testFillButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testFillButtonActionPerformed
+        // TODO add your handling code here:
+        firstNameField.setText("Daniel");
+        lastNameField.setText("Rakovský");
+        loginField.setText("Danda1");
+        passwordField.setText("Danda1");
+    }//GEN-LAST:event_testFillButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,6 +435,7 @@ public class CreateAccountWindow extends javax.swing.JFrame {
     private javax.swing.JButton okButton;
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordValidLabel;
-    private javax.swing.JButton testButton;
+    private javax.swing.JButton testFillButton;
+    private javax.swing.JButton testPrintButton;
     // End of variables declaration//GEN-END:variables
 }
