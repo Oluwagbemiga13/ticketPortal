@@ -156,20 +156,9 @@ public class TicketPortal {
                 System.out.println("Login: " + privateLogedInCustomer.login);
                 System.out.println("Customer : " + logedInCustomer.firstName + " " + logedInCustomer.lastName);
                 createCustomerMainMenuWindow();
-                
             }
-            else {
-               System.out.println("Incorect login or password."); 
-            }     
         }
-        else{
-                System.out.println("Login doesn´t exist.");
-        }
-        
     }
-    
-    
-    
 
 public static void main(String [] args){
     System.out.println("Hello");

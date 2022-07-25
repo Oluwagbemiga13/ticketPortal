@@ -7,6 +7,8 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
+import static com.mycompany.ticketportal.Ledger.loginPasswordMap;
+import static com.mycompany.ticketportal.Ledger.privateCustomerArrayList;
 import static com.mycompany.ticketportal.TicketPortal.logIn;
 
 
@@ -21,7 +23,31 @@ public class LogInWindow extends javax.swing.JFrame {
      * Creates new form LogInWindow
      */
     
+    String invalidMessage = "Invalid input";
     
+    public boolean isValidLogin(){
+        
+        boolean isValid = true;
+        String login = loginLogin.getText();
+        if(!loginPasswordMap.containsKey(login)){
+            isValid = false;
+            invalidMessageLabel.setVisible(true);
+        } 
+    return isValid;
+    }
+    
+    public boolean isValidPassword(){
+        boolean isValid = true;
+        String login = loginLogin.getText();
+        char[] passwordArr = passwordLogin.getPassword();
+        String password = String.valueOf(passwordArr);
+        
+        if (!loginPasswordMap.get(login).equals(password)){
+            isValid = false;
+        }
+
+    return isValid;
+    } 
     
     public LogInWindow() {
         initComponents();
@@ -43,6 +69,7 @@ public class LogInWindow extends javax.swing.JFrame {
         okButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         testLogInButton = new javax.swing.JButton();
+        invalidMessageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +112,8 @@ public class LogInWindow extends javax.swing.JFrame {
             }
         });
 
+        invalidMessageLabel.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,25 +127,29 @@ public class LogInWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(loginLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(passwordLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(56, 56, 56))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(testLogInButton)
-                        .addGap(24, 24, 24))))
+                    .addComponent(invalidMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(testLogInButton)
+                            .addGap(24, 24, 24))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(loginLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(passwordLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGap(56, 56, 56)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addContainerGap()
+                .addComponent(invalidMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,6 +166,8 @@ public class LogInWindow extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
+        invalidMessageLabel.setVisible(false);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,8 +180,27 @@ public class LogInWindow extends javax.swing.JFrame {
         String login = loginLogin.getText();
         char[] passwordArr = passwordLogin.getPassword();
         String password = String.valueOf(passwordArr);
-        logIn(login, password);
+        boolean isValid = true;
 
+        if(!isValidLogin()){
+            isValid = false;
+            invalidMessageLabel.setText("Invalid login!");
+            loginLogin.setText("");
+        }
+        if (!isValidPassword()){
+            invalidMessageLabel.setText("Invalid password");
+            passwordLogin.setText("123");
+            invalidMessageLabel.setVisible(true);
+            isValid = false;
+            passwordArr = null;
+        }
+        if(isValid){
+            passwordArr = passwordLogin.getPassword();
+            password = String.valueOf(passwordArr);
+            logIn(login, password);
+            this.dispose();
+        }
+        isValid = true;
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -202,6 +256,7 @@ public class LogInWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JLabel invalidMessageLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField loginLogin;

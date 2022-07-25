@@ -6,9 +6,11 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
 import static com.mycompany.ticketportal.GuiHandler.createSearchTicketWindow;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
-
+import static com.mycompany.ticketportal.TicketPortal.currentTicket;
+import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
 /**
  *
  * @author Daniel
@@ -67,6 +69,11 @@ public class CustomerMainMenuWindow extends javax.swing.JFrame {
         });
 
         logOff.setText("Log off");
+        logOff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOffActionPerformed(evt);
+            }
+        });
 
         customerMainMenuLabel.setText("Welcome " + logedInCustomer.firstName + " " + logedInCustomer.lastName);
 
@@ -132,6 +139,15 @@ public class CustomerMainMenuWindow extends javax.swing.JFrame {
     private void HelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_HelpActionPerformed
+
+    private void logOffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOffActionPerformed
+        // TODO add your handling code here:
+        createFirstWindow();
+        privateLogedInCustomer = null;
+        currentTicket = null;
+        logedInCustomer = null;
+        this.dispose();
+    }//GEN-LAST:event_logOffActionPerformed
 
     /**
      * @param args the command line arguments
