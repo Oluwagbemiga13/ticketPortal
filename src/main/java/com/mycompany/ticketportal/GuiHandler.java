@@ -43,4 +43,10 @@ public class GuiHandler {
         shoppingCartWindow.setVisible(true);
     }
     
+    public static void createChangePasswordWindow(){
+        ChangePasswordWindow changePasswordWindow = new ChangePasswordWindow();
+        changePasswordWindow.setVisible(true);
+    }
+            
+    
 }
