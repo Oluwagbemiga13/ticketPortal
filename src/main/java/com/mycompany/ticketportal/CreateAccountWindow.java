@@ -104,21 +104,40 @@ public class CreateAccountWindow extends javax.swing.JFrame {
     }
     
     public boolean validPassword(){
-        boolean isValid = true;
+        boolean isValid = false;
         String password = passwordField.getText();
+        char[] passwordArr = password.toCharArray();
         
+        boolean intFlag = true;
         if(password.length() < 6){
-            isValid = false;
+            intFlag = false;
             passwordValidLabel.setText("Must contain at least 6 characters");
         }
-        /*
-        for(char c : password.toCharArray()){
-            if(!Character.isDigit(c)){
-                isValid = false;
-                passwordValidLabel.setText("Must contain number");
+
+        boolean numFlag = false;
+        for (char c : passwordArr){
+            if(Character.isDigit(c)){
+                numFlag = true;
             }
         }
-        */
+        if(!numFlag){
+        passwordValidLabel.setText("Must contain at least one digit");
+        }
+        
+        boolean charflag = false;
+        for (char c : passwordArr){
+            if(Character.isLetter(c)){
+                charflag = true;
+            }
+        }
+        if(!charflag){
+        passwordValidLabel.setText("Must contain at least one character");
+        }
+        
+        if(intFlag && numFlag && charflag){
+            isValid = true;
+        }
+        
         return isValid;
     }
     

@@ -38,8 +38,10 @@ public class LogInWindow extends javax.swing.JFrame {
     
     public boolean isValidPassword(){
         boolean isValid = true;
+
         String login = loginLogin.getText();
         char[] passwordArr = passwordLogin.getPassword();
+        
         String password = String.valueOf(passwordArr);
         
         if (!loginPasswordMap.get(login).equals(password)){
