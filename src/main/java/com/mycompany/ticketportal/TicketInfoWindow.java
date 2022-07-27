@@ -102,9 +102,8 @@ public class TicketInfoWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         logedInCustomer.customerCart.add(currentTicket);
         createAddedToChartWindow();
-        
-        
-        
+        this.dispose();
+
     }//GEN-LAST:event_addToCartButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

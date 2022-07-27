@@ -38,4 +38,9 @@ public class GuiHandler {
         customerMainMenuWindow.setVisible(true); 
     }
     
+    public static void createShoppingCartWindow(){
+        ShoppingCartWindow shoppingCartWindow = new ShoppingCartWindow();
+        shoppingCartWindow.setVisible(true);
+    }
+    
 }

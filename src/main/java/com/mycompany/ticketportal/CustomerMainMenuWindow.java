@@ -8,6 +8,7 @@ package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
 import static com.mycompany.ticketportal.GuiHandler.createSearchTicketWindow;
+import static com.mycompany.ticketportal.GuiHandler.createShoppingCartWindow;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
 import static com.mycompany.ticketportal.TicketPortal.currentTicket;
 import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
@@ -51,6 +52,11 @@ public class CustomerMainMenuWindow extends javax.swing.JFrame {
         });
 
         cartButton.setText("Shoping cart");
+        cartButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cartButtonActionPerformed(evt);
+            }
+        });
 
         returnTicketButton.setText("Return ticket");
         returnTicketButton.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +154,12 @@ public class CustomerMainMenuWindow extends javax.swing.JFrame {
         logedInCustomer = null;
         this.dispose();
     }//GEN-LAST:event_logOffActionPerformed
+
+    private void cartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cartButtonActionPerformed
+        // TODO add your handling code here:
+        createShoppingCartWindow();
+        this.dispose();
+    }//GEN-LAST:event_cartButtonActionPerformed
 
     /**
      * @param args the command line arguments
