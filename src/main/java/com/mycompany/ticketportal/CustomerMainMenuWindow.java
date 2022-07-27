@@ -6,6 +6,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createChangePasswordWindow;
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
 import static com.mycompany.ticketportal.GuiHandler.createSearchTicketWindow;
 import static com.mycompany.ticketportal.GuiHandler.createShoppingCartWindow;
@@ -66,6 +67,11 @@ public class CustomerMainMenuWindow extends javax.swing.JFrame {
         });
 
         changePasswordButton.setText("Change Password");
+        changePasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePasswordButtonActionPerformed(evt);
+            }
+        });
 
         Help.setText("Help");
         Help.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +166,12 @@ public class CustomerMainMenuWindow extends javax.swing.JFrame {
         createShoppingCartWindow();
         this.dispose();
     }//GEN-LAST:event_cartButtonActionPerformed
+
+    private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
+        // TODO add your handling code here:
+        createChangePasswordWindow();
+        this.dispose();
+    }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     /**
      * @param args the command line arguments
