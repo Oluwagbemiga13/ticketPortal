@@ -8,7 +8,9 @@ package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
+import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.loginPasswordMap;
+import static com.mycompany.ticketportal.TicketPortal.createAcc;
 import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
 
 /**
@@ -17,12 +19,20 @@ import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
  */
 public class ChangePasswordWindow extends javax.swing.JFrame {
     
+    char[] oldPasswordArr = null;
+    char[] newPasswordArr1 = null;
+    char[] newPasswordArr2 = null;
+    String testPasswordHash = loginPasswordMap.get(privateLogedInCustomer.login);
+    String testPasswordForm = null;
+
+    
     public boolean corectOldPassword(){
         boolean corect = true;
-        char[] oldPasswordArr = oldPassword.getPassword();
-        String password = String.valueOf(oldPassword);
+        oldPasswordArr = oldPassword.getPassword();
+        String password = String.valueOf(oldPasswordArr);
         
-        if (!loginPasswordMap.get(privateLogedInCustomer.login).equals(password)){
+        if (loginPasswordMap.get(privateLogedInCustomer.login).equals(password)){
+        } else {
             corect = false;
             oldPasswordValidLabel.setVisible(true);
         }
@@ -32,14 +42,16 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     public boolean newPasswordsMateches(){
         boolean matches = true;
         
-        char[] newPasswordArr1 = newPassword1.getPassword();
-        String newPassword1 = newPasswordArr1.toString();
+        newPasswordArr1 = newPassword1.getPassword();
+        String newPassword1 = String.valueOf(newPasswordArr1);
         
-        char[] newPasswordArr2 = newPassword2.getPassword();
-        String newPassword2 = newPasswordArr2.toString();
+        newPasswordArr2 = newPassword2.getPassword();
+        String newPassword2 = String.valueOf(newPasswordArr2);
         
         if(!newPassword1.equals(newPassword2)){
             matches = false;
+            newPassword1ValidLabel.setVisible(true);
+            newPassword2ValidLabel.setVisible(true);
         }
         return matches;
     }
@@ -71,6 +83,7 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         oldPassword = new javax.swing.JPasswordField();
         newPassword1 = new javax.swing.JPasswordField();
         newPassword2 = new javax.swing.JPasswordField();
+        testButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,38 +116,50 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         newPassword2ValidLabel.setForeground(new java.awt.Color(255, 0, 0));
         newPassword2ValidLabel.setText("Does not match");
 
+        testButton.setText("Test");
+        testButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(okButton)
-                        .addGap(43, 43, 43)
-                        .addComponent(backButton)
-                        .addGap(69, 69, 69))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(newPasswordAgainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(newPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(newPassword2ValidLabel))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(newPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(oldPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(newPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(okButton)
+                                .addGap(43, 43, 43)
+                                .addComponent(backButton)
+                                .addGap(69, 69, 69))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(oldPasswordValidLabel)
-                                .addComponent(newPassword1ValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(74, 74, 74))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(newPasswordAgainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(newPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(newPassword2ValidLabel))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(newPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(oldPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(newPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(oldPasswordValidLabel)
+                                        .addComponent(newPassword1ValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(74, 74, 74))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(testButton)
+                        .addGap(28, 28, 28))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +183,9 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(backButton))
-                .addGap(52, 52, 52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(testButton)
+                .addGap(20, 20, 20))
         );
 
         newPassword1ValidLabel.setVisible(false);
@@ -170,6 +197,16 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
+        String login = privateLogedInCustomer.login;
+        
+        if(corectOldPassword() && newPasswordsMateches()){
+            String newPassword = String.valueOf(newPasswordArr1);
+            loginPasswordMap.put(login, newPassword);
+        }
+        else{
+            System.out.println("Something is not correct.");
+        }
+        
    
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -178,6 +215,15 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         createCustomerMainMenuWindow();
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Password from form " + String.valueOf(oldPassword));
+        System.out.println("Password form HashMap" + testPasswordHash);
+        
+        testPasswordForm = String.valueOf(newPasswordArr1);
+        System.out.println("Password form form 22" + testPasswordForm);
+    }//GEN-LAST:event_testButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,5 +273,6 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField oldPassword;
     private javax.swing.JLabel oldPasswordLabel;
     private javax.swing.JLabel oldPasswordValidLabel;
+    private javax.swing.JButton testButton;
     // End of variables declaration//GEN-END:variables
 }
