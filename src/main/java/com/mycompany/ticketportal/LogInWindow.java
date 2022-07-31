@@ -25,6 +25,7 @@ public class LogInWindow extends javax.swing.JFrame {
     
     String invalidMessage = "Invalid input";
     
+    // Takes login and checks if it exists
     public boolean isValidLogin(){
         
         boolean isValid = true;
@@ -36,6 +37,7 @@ public class LogInWindow extends javax.swing.JFrame {
     return isValid;
     }
     
+    // Takes login and password and returns true if mathces.
     public boolean isValidPassword(){
         boolean isValid = true;
 
@@ -47,7 +49,6 @@ public class LogInWindow extends javax.swing.JFrame {
         if (!loginPasswordMap.get(login).equals(password)){
             isValid = false;
         }
-
     return isValid;
     } 
     
@@ -177,6 +178,7 @@ public class LogInWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginLoginActionPerformed
 
+    //Q: Mám na to vytvořit metodu, i když to použiji jen když se klikne na Button ???
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
         String login = loginLogin.getText();
@@ -213,6 +215,7 @@ public class LogInWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
+    // Fill the form with test variables
     private void testLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testLogInButtonActionPerformed
         // TODO add your handling code here:
         passwordLogin.setText("Danda1");

@@ -93,7 +93,7 @@ public class TicketPortal {
     }
     
     // This method will be rebuild when Object Admin is added
-    public static Ticket createTicket(){
+    /*public static Ticket createTicket(){
         
         System.out.println("\nMethod createTicket()");
         System.out.println("Enter destination: ");
@@ -113,7 +113,7 @@ public class TicketPortal {
 
         return new Ticket( destinationCreate,priceCreate);
     }
-    
+    */
     // 
     public static Customer searchCustomer(){
         String lastName;
@@ -182,7 +182,7 @@ public static void main(String [] args){
     Ledger ledger = new Ledger();
     Vendor vendor = new Vendor();
     
-    Ticket testTicket = new Ticket("Lagos", 20000);
+    Ticket testTicket = new Ticket("Lagos", 20000, "Pardubice");
 
     }
 }

@@ -15,15 +15,17 @@ package com.mycompany.ticketportal;
  */
 public class Ticket {
     String destination;
+    String origin;
     int price;
     boolean isSold;
     Customer owner;
     int idTicket;
     public static int counterOfTickets = -1;
     
-    public Ticket(String destination,int price){
+    public Ticket(String destination,int price, String origin){
         this.destination = destination;
         this.price = price;
+        this.origin = origin;
         isSold = false;
         idTicket = counterOfTickets + 1;
         counterOfTickets++;
