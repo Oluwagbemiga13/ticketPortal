@@ -6,6 +6,8 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
+
 /**
  *
  * @author Daniel
@@ -13,10 +15,8 @@ package com.mycompany.ticketportal;
 public class FirstWindow extends javax.swing.JFrame {
 
     
-    // creates LogInWindow and closes FirstWindow
-    public void createLogInWindow(){
-        
-    }
+   
+    // Q: Musím komentovat i takhle základní funkce, potažmo třídy ???
     
     public void createAccountWindow(){
         
@@ -51,6 +51,7 @@ public class FirstWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         createAccountButton = new javax.swing.JButton();
         logInButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,6 +71,13 @@ public class FirstWindow extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Test Loged in");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,9 +89,12 @@ public class FirstWindow extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(createAccountButton)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(createAccountButton)))
                         .addGap(89, 89, 89))))
         );
         layout.setVerticalGroup(
@@ -95,7 +106,9 @@ public class FirstWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createAccountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -113,6 +126,11 @@ public class FirstWindow extends javax.swing.JFrame {
         createLoginWindow();
         this.dispose();
     }//GEN-LAST:event_logInButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.out.println(privateLogedInCustomer.login);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +169,7 @@ public class FirstWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createAccountButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logInButton;
     // End of variables declaration//GEN-END:variables

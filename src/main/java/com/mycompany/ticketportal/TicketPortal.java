@@ -5,7 +5,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-//Hashmap loginPositionMap not functioning?? Create acc functioning
+
 package com.mycompany.ticketportal;
 
 
@@ -31,6 +31,12 @@ import javax.swing.JFrame;
 /**
  *
  * @author Daniel
+ *  - Main class of project
+ *  - Creates : Customers( Visible by user) for terminal and PrivateCustomers (Login ect. Hidden)
+ *  Q: Potřebuji to vůbec zvlášť? Mám to předělat?
+ *  - Creates : FirstWindow of GUI
+ *  - Creates : Accounts...
+ *  Q: Co přesně by měla dělat tahle třída??? 
  */
 public class TicketPortal {
     
@@ -38,21 +44,21 @@ public class TicketPortal {
     public static PrivateCustomer privateLogedInCustomer = null;
     public static Ticket currentTicket = null;
     
+    // PrivateCustomer is Object storing variables needed for methods createCustomer(), login() and changePassword()
+    // Q: Má cenu předělávat String privatePassword na Array ???
     public static PrivateCustomer createPrivateCustomer(String firstName, String lastName, String login, String password){
         
+        /* As a memory of Class TicketPortal being born. 
         //System.out.println("Enter first name: ");
         //Scanner scanner = new Scanner(System.in);
         //String privateFirstName = scanner.nextLine();
-        
         //System.out.println("Enter last name: ");
         //String privateLastName = scanner.nextLine();
-        
         //System.out.println("Enter login: ");
         //String login = scanner.nextLine();
-        
         //System.out.println("Enter password: ");
         //String privatePassword = scanner.nextLine();
-        
+        */
         String privatePassword = password;
         String privateFirstName = firstName;
         String privateLastName =   lastName; 
@@ -63,27 +69,30 @@ public class TicketPortal {
     
     }
     
-    // Method creating customer from form input
+    // Object Customer contains only First and Last name of Customer.
+    // Method creating customer from form PrivateCustomer 
     public static Customer createCustomer(){
         
         int privateCustomerArrayListPosition = privateCustomerArrayList.size() - 1;
         PrivateCustomer p = Ledger.privateCustomerArrayList.get(privateCustomerArrayListPosition);
         
-        System.out.println("\nMethod createCustomer() ");
-                
         String firstNameCreate = p.privateFirstName;
-        
         String lastNameCreate = p.privateLastName;
+        System.out.println("""
+                           
+                           Method createCustomer( """ + firstNameCreate + "," + lastNameCreate + " )" );
 
         return new Customer(firstNameCreate, lastNameCreate);
     }
     
-    // Method combining createPrivateCustomer() and createCustomer() 
-    public static void createAcc(String firstName, String lastName,String login, String password){
+    // Method combining createPrivateCustomer() and createCustomer()
+    // Q: Měl by tohle mít na starosti jiný objekt ???
+    public static void createAcc(String firstName, String lastName, String login, String password){
         createPrivateCustomer( firstName, lastName, login, password);
         createCustomer();
     }
     
+    // This method will be rebuild when Object Admin is added
     public static Ticket createTicket(){
         
         System.out.println("\nMethod createTicket()");
@@ -105,6 +114,7 @@ public class TicketPortal {
         return new Ticket( destinationCreate,priceCreate);
     }
     
+    // 
     public static Customer searchCustomer(){
         String lastName;
         Customer c = null;
@@ -126,14 +136,12 @@ public class TicketPortal {
         return c;
     }
     
+    // Method returning Object Ticket by destination
     public static Ticket searchTicket(String destination){
         Ticket t = null;
-        /*
-        System.out.println("\nMethod searching Ticket by destination.");
-        System.out.println("Enter destination: ");
-        Scanner scanner = new Scanner(System.in);
-        destination = scanner.nextLine();
-        */
+        
+        System.out.println("\nsearchTicket para: " + destination);
+
         if(ticketDestinationIdMap.containsKey(destination)){
             int idOfTicket = (ticketDestinationIdMap.get(destination));
             t = ticketArrayList.get(idOfTicket);
@@ -142,15 +150,19 @@ public class TicketPortal {
         else{
             System.out.println("\nDestination not found.");
         }
-        
         return t;
     }
     
+    //Method that chcecks if login and password is correct and log in Customer and PrivateCustomer
     public static void logIn(String login, String password){
         if(loginPasswordMap.containsKey(login)){
             if (loginPasswordMap.get(login).equals(password)){
                 System.out.println("You have been loged in.");
                 int position = loginPositionMap.get(login);
+                /*
+                System.out.println("logIn() -> var position = " + position);
+                System.out.println("logIn() -> var login = " + login);
+                */
                 logedInCustomer = customerArrayList.get(position);
                 privateLogedInCustomer = privateCustomerArrayList.get(position);
                 System.out.println("Login: " + privateLogedInCustomer.login);
@@ -166,32 +178,11 @@ public static void main(String [] args){
 
     createFirstWindow();
 
+    // Q: Potřebuji inicializovat tyto objekty nebo to lze udělat jinak ???
     Ledger ledger = new Ledger();
-    
     Vendor vendor = new Vendor();
     
     Ticket testTicket = new Ticket("Lagos", 20000);
-    
-    System.out.println(customerTicktetMap.values());
-    
-    //createAcc();
-    createTicket();
-
-    printTicketInfo(ticketArrayList.get(0));
-    
-    //TEST SELL
-    vendor.sell(customerArrayList.get(0),ticketArrayList.get(0));
-    
-    printTicketInfo(ticketArrayList.get(0));
-    
-    //System.out.println(searchCustomer().firstName);
-    searchTicketPrint();
-    
-    searchCustomerPrint();
-    
-    //returnTicket();
-    
-    
 
     }
 }

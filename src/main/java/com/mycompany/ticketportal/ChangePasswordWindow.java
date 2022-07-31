@@ -12,6 +12,7 @@ import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.loginPasswordMap;
 import static com.mycompany.ticketportal.TicketPortal.createAcc;
 import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
+import java.util.Arrays;
 
 /**
  *
@@ -218,10 +219,10 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
 
     private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
         // TODO add your handling code here:
-        System.out.println("Password from form " + String.valueOf(oldPassword));
+        System.out.println("Password from form " + Arrays.toString(oldPasswordArr));
         System.out.println("Password form HashMap" + testPasswordHash);
         
-        testPasswordForm = String.valueOf(newPasswordArr1);
+        testPasswordForm = Arrays.toString(newPasswordArr1);
         System.out.println("Password form form 22" + testPasswordForm);
     }//GEN-LAST:event_testButtonActionPerformed
 

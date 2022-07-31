@@ -10,6 +10,8 @@ package com.mycompany.ticketportal;
 /**
  *
  * @author Daniel
+ * Q: Má cenu popisovat takhle malé třídy,  když jsou takhle duležité ???
+ * Object Ticket represents...
  */
 public class Ticket {
     String destination;

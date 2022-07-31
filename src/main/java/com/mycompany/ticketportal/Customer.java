@@ -12,6 +12,8 @@ import java.util.Scanner;
 /**
  *
  * @author Daniel
+ * Object Customer is used when printing out names in GUI
+ * 
  */
 public class Customer {
     int idCustomer;

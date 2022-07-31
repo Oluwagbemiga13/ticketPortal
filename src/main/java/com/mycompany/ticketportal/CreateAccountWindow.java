@@ -42,6 +42,7 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         String lastName = lastNameField.getText();
         String login = loginField.getText();
         String password = passwordField.getText();
+        int positionInArray = customerArrayList.size();
 
         createAcc(firstName, lastName, login, password);
         Printer.printCustomerInfo(Ledger.customerArrayList.get(customerArrayList.size()-1));
@@ -176,6 +177,7 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         loginValidLabel = new javax.swing.JLabel();
         passwordValidLabel = new javax.swing.JLabel();
         testFillButton = new javax.swing.JButton();
+        testFillButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -252,6 +254,13 @@ public class CreateAccountWindow extends javax.swing.JFrame {
             }
         });
 
+        testFillButton2.setText("TEST Fill 2");
+        testFillButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testFillButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -288,7 +297,9 @@ public class CreateAccountWindow extends javax.swing.JFrame {
                                     .addComponent(lastNameValidLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(firstNameValidLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
+                        .addGap(31, 31, 31)
+                        .addComponent(testFillButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
                         .addComponent(okButton)
                         .addGap(18, 18, 18)
                         .addComponent(backButton)
@@ -333,7 +344,10 @@ public class CreateAccountWindow extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(testPrintButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(testFillButton)))
+                        .addComponent(testFillButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(testFillButton2)))
                 .addGap(32, 32, 32))
         );
 
@@ -426,6 +440,14 @@ public class CreateAccountWindow extends javax.swing.JFrame {
         passwordField.setText("Danda1");
     }//GEN-LAST:event_testFillButtonActionPerformed
 
+    private void testFillButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testFillButton2ActionPerformed
+        // TODO add your handling code here:
+        firstNameField.setText("Evelína");
+        lastNameField.setText("Plachá");
+        loginField.setText("Elda123");
+        passwordField.setText("Elda123"); 
+    }//GEN-LAST:event_testFillButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -477,6 +499,7 @@ public class CreateAccountWindow extends javax.swing.JFrame {
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordValidLabel;
     private javax.swing.JButton testFillButton;
+    private javax.swing.JButton testFillButton2;
     private javax.swing.JButton testPrintButton;
     // End of variables declaration//GEN-END:variables
 }

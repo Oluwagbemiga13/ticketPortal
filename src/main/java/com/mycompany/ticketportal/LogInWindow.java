@@ -183,6 +183,7 @@ public class LogInWindow extends javax.swing.JFrame {
         char[] passwordArr = passwordLogin.getPassword();
         String password = String.valueOf(passwordArr);
         boolean isValid = true;
+        System.out.println("okButtonActionPerformed()  login = " + login);
 
         if(!isValidLogin()){
             isValid = false;
@@ -191,7 +192,7 @@ public class LogInWindow extends javax.swing.JFrame {
         }
         if (!isValidPassword()){
             invalidMessageLabel.setText("Invalid password");
-            passwordLogin.setText("123");
+            passwordLogin.setText("123456");
             invalidMessageLabel.setVisible(true);
             isValid = false;
             passwordArr = null;
@@ -199,10 +200,11 @@ public class LogInWindow extends javax.swing.JFrame {
         if(isValid){
             passwordArr = passwordLogin.getPassword();
             password = String.valueOf(passwordArr);
+            System.out.println("okButtonActionPerformed()  password = " + password);
+            System.out.println("String.valueOf(passwordArr) = " + String.valueOf(passwordArr));
             logIn(login, password);
             this.dispose();
         }
-        isValid = true;
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
