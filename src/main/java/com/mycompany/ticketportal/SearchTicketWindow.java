@@ -36,6 +36,9 @@ public class SearchTicketWindow extends javax.swing.JFrame {
         destinationField = new javax.swing.JTextField();
         okButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
+        pardubiceButton = new javax.swing.JButton();
+        calgaryButton = new javax.swing.JButton();
+        lagosButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,36 +64,56 @@ public class SearchTicketWindow extends javax.swing.JFrame {
             }
         });
 
+        pardubiceButton.setText("Pardubice");
+        pardubiceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pardubiceButtonActionPerformed(evt);
+            }
+        });
+
+        calgaryButton.setText("Calgary");
+
+        lagosButton.setText("Lagos");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(okButton)
-                    .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(okButton)
+                        .addGap(39, 39, 39)
+                        .addComponent(backButton)
+                        .addGap(64, 64, 64)
+                        .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(destinationField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(backButton)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                        .addGap(111, 111, 111)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pardubiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(calgaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lagosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(destinationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                .addGap(87, 87, 87)
+                .addComponent(pardubiceButton)
+                .addGap(31, 31, 31)
+                .addComponent(calgaryButton)
+                .addGap(31, 31, 31)
+                .addComponent(lagosButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
-                    .addComponent(backButton))
-                .addGap(63, 63, 63))
+                    .addComponent(backButton)
+                    .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(destinationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(62, 62, 62))
         );
 
         pack();
@@ -116,6 +139,13 @@ public class SearchTicketWindow extends javax.swing.JFrame {
         customerMainMenuWindow.setVisible(true); 
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
+
+    private void pardubiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pardubiceButtonActionPerformed
+        // TODO add your handling code here:
+        String origin = "Pardubice";
+
+        this.dispose();
+    }//GEN-LAST:event_pardubiceButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,8 +184,11 @@ public class SearchTicketWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JButton calgaryButton;
     private javax.swing.JTextField destinationField;
     private javax.swing.JLabel destinationLabel;
+    private javax.swing.JButton lagosButton;
     private javax.swing.JButton okButton;
+    private javax.swing.JButton pardubiceButton;
     // End of variables declaration//GEN-END:variables
 }

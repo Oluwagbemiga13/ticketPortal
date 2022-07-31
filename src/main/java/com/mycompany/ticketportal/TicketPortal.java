@@ -152,6 +152,7 @@ public class TicketPortal {
         }
         return t;
     }
+
     
     //Method that chcecks if login and password is correct and log in Customer and PrivateCustomer
     public static void logIn(String login, String password){
