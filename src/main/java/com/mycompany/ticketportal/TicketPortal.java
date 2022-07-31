@@ -23,9 +23,13 @@ import static com.mycompany.ticketportal.Printer.searchCustomerPrint;
 import static com.mycompany.ticketportal.Printer.searchTicketPrint;
 //import static com.mycompany.ticketportal.Vendor.returnTicket;
 import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
+import static com.mycompany.ticketportal.Ledger.administratorArrayList;
+import static com.mycompany.ticketportal.Ledger.administratorLoginPasswordMap;
+import static com.mycompany.ticketportal.Ledger.administratorLoginPositionMap;
 import static com.mycompany.ticketportal.Ledger.ticketOriginMap;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JFrame;
 
@@ -45,6 +49,7 @@ public class TicketPortal {
     public static Customer logedInCustomer = null;
     public static PrivateCustomer privateLogedInCustomer = null;
     public static Ticket currentTicket = null;
+    public static Administrator logedInAdministrator = null;
     
     // PrivateCustomer is Object storing variables needed for methods createCustomer(), login() and changePassword()
     // Q: Má cenu předělávat String privatePassword na Array ???
@@ -170,6 +175,24 @@ public class TicketPortal {
                 privateLogedInCustomer = privateCustomerArrayList.get(position);
                 System.out.println("Login: " + privateLogedInCustomer.login);
                 System.out.println("Customer : " + logedInCustomer.firstName + " " + logedInCustomer.lastName);
+                createCustomerMainMenuWindow();
+            }
+        }
+    }
+    
+    //
+    public static void logInAdmin(String login, char[] password){
+        if(loginPasswordMap.containsKey(login)){
+            if (administratorLoginPasswordMap.get(login).equals(password)){
+                System.out.println("You have been loged in.");
+                int position = administratorLoginPositionMap.get(login);
+                /*
+                System.out.println("logIn() -> var position = " + position);
+                System.out.println("logIn() -> var login = " + login);
+                */
+                logedInAdministrator = administratorArrayList.get(position);
+                System.out.println("Login: " + logedInAdministrator.login);
+                System.out.println("Password: " + Arrays.toString(logedInAdministrator.password));
                 createCustomerMainMenuWindow();
             }
         }

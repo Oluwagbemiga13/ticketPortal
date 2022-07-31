@@ -47,6 +47,11 @@ public class GuiHandler {
         ChangePasswordWindow changePasswordWindow = new ChangePasswordWindow();
         changePasswordWindow.setVisible(true);
     }
+    
+    public static void createAdminLogInWindow(){
+        AdminLogInWindow adminLogInWindow = new AdminLogInWindow();
+        adminLogInWindow.setVisible(true);
+    }
             
     
 }

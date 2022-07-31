@@ -6,11 +6,14 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
-import static com.mycompany.ticketportal.GuiHandler.createAdminLogInWindow;
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
+import static com.mycompany.ticketportal.Ledger.administratorLoginPasswordMap;
 import static com.mycompany.ticketportal.Ledger.loginPasswordMap;
 import static com.mycompany.ticketportal.Ledger.privateCustomerArrayList;
 import static com.mycompany.ticketportal.TicketPortal.logIn;
+import static com.mycompany.ticketportal.TicketPortal.logInAdmin;
+import static com.mycompany.ticketportal.TicketPortal.logedInAdministrator;
+import java.util.Arrays;
 
 
 
@@ -18,7 +21,7 @@ import static com.mycompany.ticketportal.TicketPortal.logIn;
  *
  * @author Daniel
  */
-public class LogInWindow extends javax.swing.JFrame {
+public class AdminLogInWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form LogInWindow
@@ -31,7 +34,7 @@ public class LogInWindow extends javax.swing.JFrame {
         
         boolean isValid = true;
         String login = loginLogin.getText();
-        if(!loginPasswordMap.containsKey(login)){
+        if(!administratorLoginPasswordMap.containsKey(login)){
             isValid = false;
             invalidMessageLabel.setVisible(true);
         } 
@@ -47,13 +50,13 @@ public class LogInWindow extends javax.swing.JFrame {
         
         String password = String.valueOf(passwordArr);
         
-        if (!loginPasswordMap.get(login).equals(password)){
+        if (!administratorLoginPasswordMap.get(login).equals(passwordArr)){
             isValid = false;
         }
     return isValid;
     } 
     
-    public LogInWindow() {
+    public AdminLogInWindow() {
         initComponents();
     }
 
@@ -74,7 +77,8 @@ public class LogInWindow extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         testLogInButton = new javax.swing.JButton();
         invalidMessageLabel = new javax.swing.JLabel();
-        adminLogInButton = new javax.swing.JButton();
+        adminButton = new javax.swing.JButton();
+        testButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,10 +123,17 @@ public class LogInWindow extends javax.swing.JFrame {
 
         invalidMessageLabel.setForeground(new java.awt.Color(255, 51, 51));
 
-        adminLogInButton.setText("Admin Log in");
-        adminLogInButton.addActionListener(new java.awt.event.ActionListener() {
+        adminButton.setText("Administration");
+        adminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminLogInButtonActionPerformed(evt);
+                adminButtonActionPerformed(evt);
+            }
+        });
+
+        testButton.setText("Test print");
+        testButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testButtonActionPerformed(evt);
             }
         });
 
@@ -130,12 +141,6 @@ public class LogInWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(adminLogInButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(testLogInButton)
-                .addGap(27, 27, 27))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(97, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,6 +164,14 @@ public class LogInWindow extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(passwordLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(91, 91, 91))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(adminButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(testButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(testLogInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,8 +193,10 @@ public class LogInWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(testLogInButton)
-                    .addComponent(adminLogInButton))
-                .addGap(46, 46, 46))
+                    .addComponent(adminButton))
+                .addGap(8, 8, 8)
+                .addComponent(testButton)
+                .addContainerGap())
         );
 
         invalidMessageLabel.setVisible(false);
@@ -197,8 +212,8 @@ public class LogInWindow extends javax.swing.JFrame {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
         String login = loginLogin.getText();
-        char[] passwordArr = passwordLogin.getPassword();
-        String password = String.valueOf(passwordArr);
+        char[] password = passwordLogin.getPassword();
+        //String password = String.valueOf(passwordArr);
         boolean isValid = true;
         System.out.println("okButtonActionPerformed()  login = " + login);
 
@@ -212,14 +227,13 @@ public class LogInWindow extends javax.swing.JFrame {
             passwordLogin.setText("123456");
             invalidMessageLabel.setVisible(true);
             isValid = false;
-            passwordArr = null;
+            //passwordArr = null;
         }
         if(isValid){
-            passwordArr = passwordLogin.getPassword();
-            password = String.valueOf(passwordArr);
-            System.out.println("okButtonActionPerformed()  password = " + password);
-            System.out.println("String.valueOf(passwordArr) = " + String.valueOf(passwordArr));
-            logIn(login, password);
+            password = passwordLogin.getPassword();
+            System.out.println("okButtonActionPerformed()  password = " +  Arrays.toString(password));
+            //System.out.println("String.valueOf(passwordArr) = " + String.valueOf(passwordArr));
+            logInAdmin(login, password);
             this.dispose();
         }
     }//GEN-LAST:event_okButtonActionPerformed
@@ -233,19 +247,27 @@ public class LogInWindow extends javax.swing.JFrame {
     // Fill the form with test variables
     private void testLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testLogInButtonActionPerformed
         // TODO add your handling code here:
-        passwordLogin.setText("Danda1");
-        loginLogin.setText("Danda1");
+        passwordLogin.setText("Admin");
+        loginLogin.setText("dan123");
     }//GEN-LAST:event_testLogInButtonActionPerformed
 
     private void passwordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordLoginActionPerformed
 
-    private void adminLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLogInButtonActionPerformed
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
-        createAdminLogInWindow();
-        this.dispose();
-    }//GEN-LAST:event_adminLogInButtonActionPerformed
+    }//GEN-LAST:event_adminButtonActionPerformed
+
+    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+        // TODO add your handling code here:
+        
+        String testPrintLogin = logedInAdministrator.login;
+        char[] testPrintPassword = logedInAdministrator.password;
+        
+        System.out.println("\nLogin : " + testPrintLogin);
+        System.out.println("Password: " + Arrays.toString(testPrintPassword));
+    }//GEN-LAST:event_testButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,26 +286,27 @@ public class LogInWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LogInWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogInWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LogInWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogInWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LogInWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogInWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LogInWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogInWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LogInWindow().setVisible(true);
+                new AdminLogInWindow().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminLogInButton;
+    private javax.swing.JButton adminButton;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel invalidMessageLabel;
     private javax.swing.JLabel jLabel2;
@@ -291,6 +314,7 @@ public class LogInWindow extends javax.swing.JFrame {
     private javax.swing.JTextField loginLogin;
     private javax.swing.JButton okButton;
     private javax.swing.JPasswordField passwordLogin;
+    private javax.swing.JButton testButton;
     private javax.swing.JButton testLogInButton;
     // End of variables declaration//GEN-END:variables
 }
