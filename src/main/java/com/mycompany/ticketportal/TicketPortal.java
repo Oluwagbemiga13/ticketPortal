@@ -23,7 +23,9 @@ import static com.mycompany.ticketportal.Printer.searchCustomerPrint;
 import static com.mycompany.ticketportal.Printer.searchTicketPrint;
 //import static com.mycompany.ticketportal.Vendor.returnTicket;
 import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
+import static com.mycompany.ticketportal.Ledger.ticketOriginMap;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JFrame;
 
@@ -172,6 +174,65 @@ public class TicketPortal {
             }
         }
     }
+    
+    // Q: Nevím jak vyřešit vyjímku když metoda vrací null ???
+    public static Ticket testSearch(String origin, String destination){
+        Ticket t = null;
+        
+        
+        System.out.println("\nsearchTicket para: " + origin  + ", " + destination);
+        
+        ArrayList<Ticket> potentialTickets = new ArrayList<>();
+        for(int i = 0; i < ticketArrayList.size(); i++){
+            Ticket q = ticketArrayList.get(i);
+            if(q.origin == origin && q.destination == destination && !q.isSold){
+                potentialTickets.add(q);
+            }
+        }
+        if(potentialTickets.size() > 0){
+            t = potentialTickets.get(0);
+        }
+        
+        return t;
+    }
+    
+    public static boolean doesTicketExists(String origin, String destination){
+        ArrayList<Ticket> potentialTickets = new ArrayList<>();
+        boolean exists = false;
+        for(int i = 0; i < ticketArrayList.size(); i++){
+            Ticket q = ticketArrayList.get(i);
+            if(q.origin == origin && q.destination == destination && !q.isSold){
+                exists = true;
+            }
+        }
+        return exists;
+    }
+    
+    public static void searchCombined(String origin, String destination){
+
+        if(!doesTicketExists(origin , destination)){
+            System.out.println("Ticket not exists");
+        }
+        else{
+           Ticket t = testSearch(origin, destination);
+           System.out.println("Destination :" +  t.destination);
+        }
+    
+    }
+    
+    public static int getTicketPosition(String origin, String destination){
+        int ticketPosition;
+        
+        for(int i = 0; i < ticketArrayList.size(); i++){
+            Ticket q = ticketArrayList.get(i);
+            if(q.origin == origin && q.destination == destination && !q.isSold){
+                ticketPosition = q.idTicket;
+            }
+        }
+        return ticketPosition;
+    }
+    
+    
 
 public static void main(String [] args){
     System.out.println("Hello");
@@ -184,6 +245,14 @@ public static void main(String [] args){
     Vendor vendor = new Vendor();
     
     Ticket testTicket = new Ticket("Lagos", 20000, "Pardubice");
-
+    Ticket testTicket01 = new Ticket("Pardubice", 20000, "Pardubice");
+    
+    searchCombined("Lagos", "Pardubice");
+    //searchCombined("Pardubice", "Pardubice");
+    
+    char[] testArr = {'d','a','n','1','2','3'};
+    
+    Administrator dan = new Administrator(testArr, "Admin");
+    
     }
 }

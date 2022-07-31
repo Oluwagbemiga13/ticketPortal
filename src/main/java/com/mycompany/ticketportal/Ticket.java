@@ -32,5 +32,8 @@ public class Ticket {
         
         Ledger.ticketArrayList.add(idTicket,this);
         Ledger.ticketDestinationIdMap.put(destination, idTicket);
+        Ledger.ticketOriginMap.put(this, origin);
+        Ledger.ticketDestinationMap.put(this, destination);
     }
+    
 }
