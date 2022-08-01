@@ -76,7 +76,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="&quot;Welcome &quot; + logedInAdministrator.login" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="createTicketButton">
@@ -88,6 +90,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Change Password"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="changePasswordButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="viewReservationsButton">
       <Properties>
@@ -103,6 +108,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Log off"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logOffButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

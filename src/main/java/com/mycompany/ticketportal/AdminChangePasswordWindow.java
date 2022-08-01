@@ -6,12 +6,11 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createAdminChangePasswordWindow;
 import static com.mycompany.ticketportal.GuiHandler.createAdminMainMenu;
-import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
-import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
-import static com.mycompany.ticketportal.Ledger.customerArrayList;
+import static com.mycompany.ticketportal.Ledger.administratorLoginPasswordMap;
 import static com.mycompany.ticketportal.Ledger.loginPasswordMap;
-import static com.mycompany.ticketportal.TicketPortal.createAcc;
+import static com.mycompany.ticketportal.TicketPortal.logedInAdministrator;
 import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
 import java.util.Arrays;
 
@@ -19,21 +18,23 @@ import java.util.Arrays;
  *
  * @author Daniel
  */
-public class ChangePasswordWindow extends javax.swing.JFrame {
-    
+public class AdminChangePasswordWindow extends javax.swing.JFrame {
+
+    /**
+     * Creates new form AdminChangePasswordWindow
+     */
     char[] oldPasswordArr = null;
     char[] newPasswordArr1 = null;
     char[] newPasswordArr2 = null;
-    String testPasswordHash = loginPasswordMap.get(privateLogedInCustomer.login);
+    //String testPasswordHash = loginPasswordMap.get(privateLogedInCustomer.login);
     String testPasswordForm = null;
-
     
     public boolean corectOldPassword(){
         boolean corect = true;
         oldPasswordArr = oldPassword.getPassword();
-        String password = String.valueOf(oldPasswordArr);
+        //String password = String.valueOf(oldPasswordArr);
         
-        if (loginPasswordMap.get(privateLogedInCustomer.login).equals(password)){
+        if (Arrays.equals(administratorLoginPasswordMap.get(logedInAdministrator.login), oldPasswordArr)){
         } else {
             corect = false;
             oldPasswordValidLabel.setVisible(true);
@@ -58,12 +59,10 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         return matches;
     }
 
-    /**
-     * Creates new form ChangePasswordWindow
-     */
-    public ChangePasswordWindow() {
+    public AdminChangePasswordWindow() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,7 +73,11 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        oldPassword = new javax.swing.JPasswordField();
+        newPassword1 = new javax.swing.JPasswordField();
+        newPassword2 = new javax.swing.JPasswordField();
         newPassword1ValidLabel = new javax.swing.JLabel();
+        testButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         newPasswordLabel = new javax.swing.JLabel();
@@ -82,15 +85,19 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         oldPasswordValidLabel = new javax.swing.JLabel();
         newPasswordAgainLabel = new javax.swing.JLabel();
         newPassword2ValidLabel = new javax.swing.JLabel();
-        oldPassword = new javax.swing.JPasswordField();
-        newPassword1 = new javax.swing.JPasswordField();
-        newPassword2 = new javax.swing.JPasswordField();
-        testButton = new javax.swing.JButton();
+        passwordChangedLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         newPassword1ValidLabel.setForeground(new java.awt.Color(255, 0, 0));
         newPassword1ValidLabel.setText("Does not match");
+
+        testButton.setText("Test");
+        testButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testButtonActionPerformed(evt);
+            }
+        });
 
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,55 +125,56 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         newPassword2ValidLabel.setForeground(new java.awt.Color(255, 0, 0));
         newPassword2ValidLabel.setText("Does not match");
 
-        testButton.setText("Test");
-        testButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testButtonActionPerformed(evt);
-            }
-        });
+        passwordChangedLabel.setForeground(new java.awt.Color(0, 153, 51));
+        passwordChangedLabel.setText("Password was changed");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(54, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(newPasswordAgainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(newPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(newPassword2ValidLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(newPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(oldPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(newPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(oldPasswordValidLabel)
+                                    .addComponent(newPassword1ValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(74, 74, 74))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(okButton)
                                 .addGap(43, 43, 43)
                                 .addComponent(backButton)
-                                .addGap(69, 69, 69))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(newPasswordAgainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(newPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(newPassword2ValidLabel))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(newPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(oldPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(oldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(newPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(oldPasswordValidLabel)
-                                        .addComponent(newPassword1ValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(74, 74, 74))
+                                .addGap(115, 115, 115))
+                            .addComponent(testButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(testButton)
-                        .addGap(28, 28, 28))))
+                        .addComponent(passwordChangedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(126, 126, 126))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(40, 40, 40)
+                .addComponent(passwordChangedLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(oldPasswordValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(oldPasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -181,35 +189,46 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
                     .addComponent(newPassword2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newPasswordAgainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newPassword2ValidLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(backButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(testButton)
-                .addGap(20, 20, 20))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         newPassword1ValidLabel.setVisible(false);
         oldPasswordValidLabel.setVisible(false);
         newPassword2ValidLabel.setVisible(false);
+        passwordChangedLabel.setVisible(false);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Password from form " + Arrays.toString(oldPasswordArr));
+        //System.out.println("Password form HashMap" + testPasswordHash);
+
+        testPasswordForm = Arrays.toString(newPasswordArr1);
+        System.out.println("Password form form 22" + testPasswordForm);
+    }//GEN-LAST:event_testButtonActionPerformed
+
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
-        String login = privateLogedInCustomer.login;
-        
+        String login = logedInAdministrator.login;
+
         if(corectOldPassword() && newPasswordsMateches()){
-            String newPassword = String.valueOf(newPasswordArr1);
-            loginPasswordMap.put(login, newPassword);
+            //String newPassword = String.valueOf(newPasswordArr1);
+            administratorLoginPasswordMap.put(login, newPasswordArr1);
+            passwordChangedLabel.setVisible(true);
         }
         else{
-            System.out.println("Something is not correct.");
+            System.out.println("Password was not changed.");
+            passwordChangedLabel.setVisible(false);
         }
-        
-   
+
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -217,15 +236,6 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         createAdminMainMenu();
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
-
-    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Password from form " + Arrays.toString(oldPasswordArr));
-        System.out.println("Password form HashMap" + testPasswordHash);
-        
-        testPasswordForm = Arrays.toString(newPasswordArr1);
-        System.out.println("Password form form 22" + testPasswordForm);
-    }//GEN-LAST:event_testButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,20 +254,20 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangePasswordWindow().setVisible(true);
+                new AdminChangePasswordWindow().setVisible(true);
                 
             }
         });
@@ -275,6 +285,7 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField oldPassword;
     private javax.swing.JLabel oldPasswordLabel;
     private javax.swing.JLabel oldPasswordValidLabel;
+    private javax.swing.JLabel passwordChangedLabel;
     private javax.swing.JButton testButton;
     // End of variables declaration//GEN-END:variables
 }

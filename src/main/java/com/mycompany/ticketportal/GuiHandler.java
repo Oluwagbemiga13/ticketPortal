@@ -56,6 +56,11 @@ public class GuiHandler {
     public static void createAdminMainMenu(){
         AdminMainMenu adminMainMenu = new AdminMainMenu();
         adminMainMenu.setVisible(true);
-    }        
+    }   
+    
+    public static void createAdminChangePasswordWindow(){
+        AdminChangePasswordWindow adminChangePasswordWindow = new AdminChangePasswordWindow();
+        adminChangePasswordWindow.setVisible(true);
+    }   
     
 }

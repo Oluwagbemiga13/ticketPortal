@@ -6,6 +6,12 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createAdminChangePasswordWindow;
+import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
+import static com.mycompany.ticketportal.TicketPortal.currentTicket;
+import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
+import static com.mycompany.ticketportal.TicketPortal.logedInAdministrator;
+
 /**
  *
  * @author Daniel
@@ -37,17 +43,27 @@ public class AdminMainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Welcome " + logedInAdministrator.login);
 
         createTicketButton.setText("Create Ticket");
 
         changePasswordButton.setText("Change Password");
+        changePasswordButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePasswordButtonActionPerformed(evt);
+            }
+        });
 
         viewReservationsButton.setText("View Reservations");
 
         editCustomersButton.setText("Edit Customers");
 
         logOffButton.setText("Log off");
+        logOffButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOffButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,6 +109,19 @@ public class AdminMainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logOffButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOffButtonActionPerformed
+        // TODO add your handling code here:
+        createFirstWindow();
+        logedInAdministrator = null;
+        this.dispose();
+    }//GEN-LAST:event_logOffButtonActionPerformed
+
+    private void changePasswordButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changePasswordButtonActionPerformed
+        // TODO add your handling code here:
+        createAdminChangePasswordWindow();
+        this.dispose();
+    }//GEN-LAST:event_changePasswordButtonActionPerformed
 
     /**
      * @param args the command line arguments
