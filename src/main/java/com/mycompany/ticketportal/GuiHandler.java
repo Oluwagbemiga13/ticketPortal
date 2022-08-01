@@ -52,6 +52,10 @@ public class GuiHandler {
         AdminLogInWindow adminLogInWindow = new AdminLogInWindow();
         adminLogInWindow.setVisible(true);
     }
-            
+
+    public static void createAdminMainMenu(){
+        AdminMainMenu adminMainMenu = new AdminMainMenu();
+        adminMainMenu.setVisible(true);
+    }        
     
 }

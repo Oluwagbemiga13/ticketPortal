@@ -57,10 +57,10 @@
           </Group>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-              <Component id="adminButton" min="-2" max="-2" attributes="0"/>
+              <Component id="customersButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="testButton" max="32767" attributes="0"/>
+                  <Component id="testPrintButton" max="32767" attributes="0"/>
                   <Component id="testLogInButton" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -90,10 +90,10 @@
               <EmptySpace pref="30" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="testLogInButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="adminButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="customersButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-              <Component id="testButton" min="-2" max="-2" attributes="0"/>
+              <Component id="testPrintButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -163,20 +163,20 @@
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="invalidMessageLabel.setVisible(false);"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="adminButton">
+    <Component class="javax.swing.JButton" name="customersButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Administration"/>
+        <Property name="text" type="java.lang.String" value="Customer log in"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adminButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="customersButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="testButton">
+    <Component class="javax.swing.JButton" name="testPrintButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Test print"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="testButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="testPrintButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

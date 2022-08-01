@@ -9,6 +9,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 
+import static com.mycompany.ticketportal.GuiHandler.createAdminMainMenu;
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
 import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.customerLastNameIdMap;
@@ -182,8 +183,8 @@ public class TicketPortal {
     
     //
     public static void logInAdmin(String login, char[] password){
-        if(loginPasswordMap.containsKey(login)){
-            if (administratorLoginPasswordMap.get(login).equals(password)){
+        if(administratorLoginPasswordMap.containsKey(login)){
+            if (Arrays.equals(administratorLoginPasswordMap.get(login), password)){
                 System.out.println("You have been loged in.");
                 int position = administratorLoginPositionMap.get(login);
                 /*
@@ -191,9 +192,10 @@ public class TicketPortal {
                 System.out.println("logIn() -> var login = " + login);
                 */
                 logedInAdministrator = administratorArrayList.get(position);
+                System.out.println(Arrays.toString(password));
                 System.out.println("Login: " + logedInAdministrator.login);
                 System.out.println("Password: " + Arrays.toString(logedInAdministrator.password));
-                createCustomerMainMenuWindow();
+                createAdminMainMenu();
             }
         }
     }

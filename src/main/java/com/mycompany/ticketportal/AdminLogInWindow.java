@@ -48,9 +48,9 @@ public class AdminLogInWindow extends javax.swing.JFrame {
         String login = loginLogin.getText();
         char[] passwordArr = passwordLogin.getPassword();
         
-        String password = String.valueOf(passwordArr);
         
-        if (!administratorLoginPasswordMap.get(login).equals(passwordArr)){
+        
+        if (!Arrays.equals(administratorLoginPasswordMap.get(login), passwordArr)){
             isValid = false;
         }
     return isValid;
@@ -77,8 +77,8 @@ public class AdminLogInWindow extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         testLogInButton = new javax.swing.JButton();
         invalidMessageLabel = new javax.swing.JLabel();
-        adminButton = new javax.swing.JButton();
-        testButton = new javax.swing.JButton();
+        customersButton = new javax.swing.JButton();
+        testPrintButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,17 +123,17 @@ public class AdminLogInWindow extends javax.swing.JFrame {
 
         invalidMessageLabel.setForeground(new java.awt.Color(255, 51, 51));
 
-        adminButton.setText("Administration");
-        adminButton.addActionListener(new java.awt.event.ActionListener() {
+        customersButton.setText("Customer log in");
+        customersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminButtonActionPerformed(evt);
+                customersButtonActionPerformed(evt);
             }
         });
 
-        testButton.setText("Test print");
-        testButton.addActionListener(new java.awt.event.ActionListener() {
+        testPrintButton.setText("Test print");
+        testPrintButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testButtonActionPerformed(evt);
+                testPrintButtonActionPerformed(evt);
             }
         });
 
@@ -166,10 +166,10 @@ public class AdminLogInWindow extends javax.swing.JFrame {
                         .addGap(91, 91, 91))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(adminButton)
+                .addComponent(customersButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(testButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(testPrintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(testLogInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
         );
@@ -193,9 +193,9 @@ public class AdminLogInWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(testLogInButton)
-                    .addComponent(adminButton))
+                    .addComponent(customersButton))
                 .addGap(8, 8, 8)
-                .addComponent(testButton)
+                .addComponent(testPrintButton)
                 .addContainerGap())
         );
 
@@ -247,27 +247,33 @@ public class AdminLogInWindow extends javax.swing.JFrame {
     // Fill the form with test variables
     private void testLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testLogInButtonActionPerformed
         // TODO add your handling code here:
-        passwordLogin.setText("Admin");
-        loginLogin.setText("dan123");
+        passwordLogin.setText("dan123");
+        loginLogin.setText("Admin");
     }//GEN-LAST:event_testLogInButtonActionPerformed
 
     private void passwordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordLoginActionPerformed
 
-    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
+    private void customersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_adminButtonActionPerformed
+    }//GEN-LAST:event_customersButtonActionPerformed
 
-    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
+    private void testPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testPrintButtonActionPerformed
         // TODO add your handling code here:
         
+        if(logedInAdministrator != null){
         String testPrintLogin = logedInAdministrator.login;
         char[] testPrintPassword = logedInAdministrator.password;
         
         System.out.println("\nLogin : " + testPrintLogin);
         System.out.println("Password: " + Arrays.toString(testPrintPassword));
-    }//GEN-LAST:event_testButtonActionPerformed
+        }
+        
+        System.out.println("logedInAdministrator == null");
+       
+        
+    }//GEN-LAST:event_testPrintButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,15 +312,15 @@ public class AdminLogInWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminButton;
     private javax.swing.JButton backButton;
+    private javax.swing.JButton customersButton;
     private javax.swing.JLabel invalidMessageLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField loginLogin;
     private javax.swing.JButton okButton;
     private javax.swing.JPasswordField passwordLogin;
-    private javax.swing.JButton testButton;
     private javax.swing.JButton testLogInButton;
+    private javax.swing.JButton testPrintButton;
     // End of variables declaration//GEN-END:variables
 }
