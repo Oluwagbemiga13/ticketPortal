@@ -17,6 +17,12 @@ public class GuiHandler {
         firstWindow.setVisible(true);
     }
     
+    public static void createLoginWindow(){
+        
+        LogInWindow logInWindow = new LogInWindow();
+        logInWindow.setVisible(true); 
+    }
+    
     public static void createSearchTicketWindow(){
         SearchTicketWindow searchTicketWindow = new SearchTicketWindow();
         searchTicketWindow.setVisible(true);

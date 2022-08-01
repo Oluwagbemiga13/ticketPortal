@@ -6,6 +6,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createLoginWindow;
 import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
 
 /**
@@ -23,13 +24,7 @@ public class FirstWindow extends javax.swing.JFrame {
         CreateAccountWindow createAccountWindow = new CreateAccountWindow();
         createAccountWindow.setVisible(true); 
     }
-    
-    public void createLoginWindow(){
-        
-        LogInWindow logInWindow = new LogInWindow();
-        logInWindow.setVisible(true); 
-    }
-    
+
     /**
      * Creates new form FirstWindow
      * 

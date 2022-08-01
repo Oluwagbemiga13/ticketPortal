@@ -7,6 +7,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
+import static com.mycompany.ticketportal.GuiHandler.createLoginWindow;
 import static com.mycompany.ticketportal.Ledger.administratorLoginPasswordMap;
 import static com.mycompany.ticketportal.Ledger.loginPasswordMap;
 import static com.mycompany.ticketportal.Ledger.privateCustomerArrayList;
@@ -257,6 +258,8 @@ public class AdminLogInWindow extends javax.swing.JFrame {
 
     private void customersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersButtonActionPerformed
         // TODO add your handling code here:
+        createLoginWindow();
+        this.dispose();
     }//GEN-LAST:event_customersButtonActionPerformed
 
     private void testPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testPrintButtonActionPerformed
