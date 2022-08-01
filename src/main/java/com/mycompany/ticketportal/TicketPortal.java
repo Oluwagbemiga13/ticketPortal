@@ -228,7 +228,7 @@ public class TicketPortal {
     }
     
     public static int getTicketPosition(String origin, String destination){
-        int ticketPosition;
+        int ticketPosition = 0;
         
         for(int i = 0; i < ticketArrayList.size(); i++){
             Ticket q = ticketArrayList.get(i);
