@@ -22,11 +22,11 @@ public class Ticket {
     int idTicket;
     public static int counterOfTickets = -1;
     
-    public Ticket(String destination,int price, String origin){
+    public Ticket(String origin, String destination, int price){
         this.destination = destination;
         this.price = price;
         this.origin = origin;
-        isSold = false;
+
         idTicket = counterOfTickets + 1;
         counterOfTickets++;
         
@@ -34,6 +34,5 @@ public class Ticket {
         Ledger.ticketDestinationIdMap.put(destination, idTicket);
         Ledger.ticketOriginMap.put(this, origin);
         Ledger.ticketDestinationMap.put(this, destination);
-    }
-    
+    }  
 }
