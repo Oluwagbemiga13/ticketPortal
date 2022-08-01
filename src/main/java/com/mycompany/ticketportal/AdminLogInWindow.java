@@ -76,12 +76,12 @@ public class AdminLogInWindow extends javax.swing.JFrame {
         passwordLogin = new javax.swing.JPasswordField();
         okButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        testLogInButton = new javax.swing.JButton();
+        adminButton = new javax.swing.JButton();
         invalidMessageLabel = new javax.swing.JLabel();
         customersButton = new javax.swing.JButton();
-        testPrintButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setText("Login");
 
@@ -115,14 +115,15 @@ public class AdminLogInWindow extends javax.swing.JFrame {
             }
         });
 
-        testLogInButton.setText("Test log in");
-        testLogInButton.addActionListener(new java.awt.event.ActionListener() {
+        adminButton.setText("Admin");
+        adminButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testLogInButtonActionPerformed(evt);
+                adminButtonActionPerformed(evt);
             }
         });
 
         invalidMessageLabel.setForeground(new java.awt.Color(255, 51, 51));
+        invalidMessageLabel.setText("Invalid message");
 
         customersButton.setText("Customer log in");
         customersButton.addActionListener(new java.awt.event.ActionListener() {
@@ -131,78 +132,61 @@ public class AdminLogInWindow extends javax.swing.JFrame {
             }
         });
 
-        testPrintButton.setText("Test print");
-        testPrintButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                testPrintButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginLogin)
+                    .addComponent(passwordLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(adminButton, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                    .addComponent(okButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(backButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(invalidMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69))
+                        .addComponent(invalidMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(okButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(backButton))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(loginLogin))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(passwordLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(91, 91, 91))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(customersButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(testPrintButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(testLogInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27))
+                        .addComponent(customersButton)
+                        .addGap(258, 258, 258))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(invalidMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
+                .addComponent(invalidMessageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loginLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loginLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adminButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(okButton))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okButton)
+                    .addComponent(customersButton)
                     .addComponent(backButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(testLogInButton)
-                    .addComponent(customersButton))
-                .addGap(8, 8, 8)
-                .addComponent(testPrintButton)
-                .addContainerGap())
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         invalidMessageLabel.setVisible(false);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginLoginActionPerformed
@@ -225,7 +209,7 @@ public class AdminLogInWindow extends javax.swing.JFrame {
         }
         if (!isValidPassword()){
             invalidMessageLabel.setText("Invalid password");
-            passwordLogin.setText("123456");
+            passwordLogin.setText(null);
             invalidMessageLabel.setVisible(true);
             isValid = false;
             //passwordArr = null;
@@ -246,11 +230,11 @@ public class AdminLogInWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_backButtonActionPerformed
 
     // Fill the form with test variables
-    private void testLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testLogInButtonActionPerformed
+    private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
         passwordLogin.setText("dan123");
         loginLogin.setText("Admin");
-    }//GEN-LAST:event_testLogInButtonActionPerformed
+    }//GEN-LAST:event_adminButtonActionPerformed
 
     private void passwordLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordLoginActionPerformed
         // TODO add your handling code here:
@@ -261,22 +245,6 @@ public class AdminLogInWindow extends javax.swing.JFrame {
         createLoginWindow();
         this.dispose();
     }//GEN-LAST:event_customersButtonActionPerformed
-
-    private void testPrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testPrintButtonActionPerformed
-        // TODO add your handling code here:
-        
-        if(logedInAdministrator != null){
-        String testPrintLogin = logedInAdministrator.login;
-        char[] testPrintPassword = logedInAdministrator.password;
-        
-        System.out.println("\nLogin : " + testPrintLogin);
-        System.out.println("Password: " + Arrays.toString(testPrintPassword));
-        }
-        
-        System.out.println("logedInAdministrator == null");
-       
-        
-    }//GEN-LAST:event_testPrintButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -315,6 +283,7 @@ public class AdminLogInWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adminButton;
     private javax.swing.JButton backButton;
     private javax.swing.JButton customersButton;
     private javax.swing.JLabel invalidMessageLabel;
@@ -323,7 +292,5 @@ public class AdminLogInWindow extends javax.swing.JFrame {
     private javax.swing.JTextField loginLogin;
     private javax.swing.JButton okButton;
     private javax.swing.JPasswordField passwordLogin;
-    private javax.swing.JButton testLogInButton;
-    private javax.swing.JButton testPrintButton;
     // End of variables declaration//GEN-END:variables
 }
