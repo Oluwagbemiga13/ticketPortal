@@ -47,7 +47,6 @@ com\mycompany\ticketportal\TicketInfoWindow$3.class
 com\mycompany\ticketportal\CustomerMainMenuWindow$7.class
 com\mycompany\ticketportal\ChangePasswordWindow$4.class
 com\mycompany\ticketportal\FirstWindow$1.class
-com\mycompany\ticketportal\AdminLogInWindow$8.class
 com\mycompany\ticketportal\Ticket.class
 com\mycompany\ticketportal\AdminChangePasswordWindow$2.class
 com\mycompany\ticketportal\AdminLogInWindow$1.class
@@ -59,9 +58,9 @@ com\mycompany\ticketportal\CreateAccountWindow$6.class
 com\mycompany\ticketportal\TicketInfoWindow$1.class
 com\mycompany\ticketportal\ChangePasswordWindow$1.class
 com\mycompany\ticketportal\CreateAccountWindow$10.class
-com\mycompany\ticketportal\FirstWindow$4.class
 com\mycompany\ticketportal\CustomerMainMenuWindow$3.class
 com\mycompany\ticketportal\LogInWindow$1.class
+com\mycompany\ticketportal\LogInWindow$8.class
 com\mycompany\ticketportal\SearchTicketWindow$3.class
 com\mycompany\ticketportal\TicketInfoWindow$2.class
 com\mycompany\ticketportal\CreateAccountWindow$7.class
