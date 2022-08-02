@@ -104,6 +104,9 @@ public class Printer {
                 System.out.println("\nID: " + t.idTicket);
                 System.out.println("Origin: " + t.origin);
                 System.out.println("Destination: " + t.destination);
+                if(t.owner != null){
+                    System.out.println("Last name: " + t.owner.lastName);
+                }
             }
             
            

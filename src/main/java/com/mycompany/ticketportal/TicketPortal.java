@@ -28,7 +28,12 @@ import static com.mycompany.ticketportal.Ledger.administratorArrayList;
 import static com.mycompany.ticketportal.Ledger.administratorLoginPasswordMap;
 import static com.mycompany.ticketportal.Ledger.administratorLoginPositionMap;
 import static com.mycompany.ticketportal.Ledger.ticketOriginMap;
+import com.sun.tools.javac.Main;
 import java.awt.BorderLayout;
+import java.awt.GraphicsEnvironment;
+import java.io.Console;
+import java.io.IOException;
+import static java.lang.String.format;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -51,6 +56,7 @@ public class TicketPortal {
     public static PrivateCustomer privateLogedInCustomer = null;
     public static Ticket currentTicket = null;
     public static Administrator logedInAdministrator = null;
+    private static String format;
     
     // PrivateCustomer is Object storing variables needed for methods createCustomer(), login() and changePassword()
     // Q: Má cenu předělávat String privatePassword na Array ???
@@ -242,9 +248,8 @@ public class TicketPortal {
     
     
 
-public static void main(String [] args){
+public static void main(String [] args) throws IOException{
     System.out.println("Hello");
-    //Scanner scanner = new Scanner(System.in);
 
     createFirstWindow();
 

@@ -18,12 +18,15 @@ com\mycompany\ticketportal\LogInWindow$6.class
 com\mycompany\ticketportal\AdminMainMenu.class
 com\mycompany\ticketportal\ChangePasswordWindow$2.class
 com\mycompany\ticketportal\AdminChangePasswordWindow$4.class
+com\mycompany\ticketportal\CreateTicketWindow$6.class
 com\mycompany\ticketportal\Administrator.class
 com\mycompany\ticketportal\AdminLogInWindow$7.class
 com\mycompany\ticketportal\CreateAccountWindow$4.class
 com\mycompany\ticketportal\FirstWindow$2.class
+com\mycompany\ticketportal\BuyTicketWindow$3.class
 com\mycompany\ticketportal\CustomerMainMenuWindow$6.class
 com\mycompany\ticketportal\AdminLogInWindow.class
+com\mycompany\ticketportal\CreateTicketWindow$3.class
 com\mycompany\ticketportal\AdminChangePasswordWindow$1.class
 com\mycompany\ticketportal\LogInWindow.class
 com\mycompany\ticketportal\AdminMainMenu$2.class
@@ -46,6 +49,7 @@ com\mycompany\ticketportal\FirstWindow.class
 com\mycompany\ticketportal\TicketInfoWindow$3.class
 com\mycompany\ticketportal\CustomerMainMenuWindow$7.class
 com\mycompany\ticketportal\ChangePasswordWindow$4.class
+com\mycompany\ticketportal\BuyTicketWindow$2.class
 com\mycompany\ticketportal\FirstWindow$1.class
 com\mycompany\ticketportal\Ticket.class
 com\mycompany\ticketportal\AdminChangePasswordWindow$2.class
@@ -58,6 +62,7 @@ com\mycompany\ticketportal\CreateAccountWindow$6.class
 com\mycompany\ticketportal\TicketInfoWindow$1.class
 com\mycompany\ticketportal\ChangePasswordWindow$1.class
 com\mycompany\ticketportal\CreateAccountWindow$10.class
+com\mycompany\ticketportal\CreateTicketWindow$5.class
 com\mycompany\ticketportal\CustomerMainMenuWindow$3.class
 com\mycompany\ticketportal\LogInWindow$1.class
 com\mycompany\ticketportal\LogInWindow$8.class
@@ -66,10 +71,15 @@ com\mycompany\ticketportal\TicketInfoWindow$2.class
 com\mycompany\ticketportal\CreateAccountWindow$7.class
 com\mycompany\ticketportal\SearchTicketWindow.class
 com\mycompany\ticketportal\AdminLogInWindow$2.class
+com\mycompany\ticketportal\ShoppingCartWindow$3.class
+com\mycompany\ticketportal\BuyTicketWindow$1.class
 com\mycompany\ticketportal\CreateAccountWindow$9.class
+com\mycompany\ticketportal\CreateTicketWindow$4.class
 com\mycompany\ticketportal\CustomerMainMenuWindow.class
 com\mycompany\ticketportal\Ledger.class
 com\mycompany\ticketportal\AddedToCartWindow$2.class
+com\mycompany\ticketportal\AdminMainMenu$4.class
+com\mycompany\ticketportal\BuyTicketWindow.class
 com\mycompany\ticketportal\SearchTicketWindow$1.class
 com\mycompany\ticketportal\AdminLogInWindow$6.class
 com\mycompany\ticketportal\CreateAccountWindow.class
@@ -82,3 +92,4 @@ com\mycompany\ticketportal\CreateAccountWindow$3.class
 com\mycompany\ticketportal\Customer.class
 com\mycompany\ticketportal\FirstWindow$3.class
 com\mycompany\ticketportal\CustomerMainMenuWindow$2.class
+com\mycompany\ticketportal\CreateTicketWindow$7.class

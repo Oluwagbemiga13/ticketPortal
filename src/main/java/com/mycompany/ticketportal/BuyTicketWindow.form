@@ -35,6 +35,8 @@
                       <Component id="yesButton" min="-2" pref="83" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="noButton" min="-2" pref="83" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
@@ -46,12 +48,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               <Component id="infoLabel" min="-2" pref="66" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="yesButton" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
-                  <Component id="noButton" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="yesButton" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="noButton" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -62,7 +73,7 @@
         <Property name="text" type="java.lang.String" value="Do you want to buy ticket from ................ to ..................... for ..............$"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="if(!currentTicket.isSold){&#xa;    infoLabel.setText(&quot;Do you want to buy ticket from &quot; + currentTicket.origin + &quot; to &quot; + currentTicket.destination + &quot; for &quot;  + currentTicket.price + &quot;$ ?&quot;);&#xa;        }"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="if(!currentTicket.isSold){&#xa;    infoLabel.setText(&quot;Do you want to buy ticket from &quot; + currentTicket.origin + &quot; to &quot; + currentTicket.destination + &quot; for &quot;  + currentTicket.price + &quot;$ ?&quot;);&#xa;        }&#xa;else{&#xa;    System.out.println(&quot;Ticket was sold.&quot;);&#xa;}"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="yesButton">
@@ -79,6 +90,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="noButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="test"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

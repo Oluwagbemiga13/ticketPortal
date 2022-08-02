@@ -80,7 +80,7 @@ public class AddedToCartWindow extends javax.swing.JFrame {
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
-        Vendor.sell(logedInCustomer, currentTicket);
+        //Vendor.sell(logedInCustomer, currentTicket);
         currentTicket = null;
         createCustomerMainMenuWindow();
         this.dispose();
