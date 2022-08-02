@@ -190,7 +190,7 @@ public class CreateTicketWindowTest extends javax.swing.JFrame {
             int amount = Integer.parseInt(amountString);
             int price;
         
-            if(destination == "Pardubice"){
+            if("Pardubice".equals(destination)){
                 price = 500;
             }
             else{
@@ -199,6 +199,9 @@ public class CreateTicketWindowTest extends javax.swing.JFrame {
             for(int i = 0; i < amount; i++){
                 createTicket(origin, destination, price);
             }
+        }
+        else{
+            errorLabel.setVisible(true);
         }
     }//GEN-LAST:event_okButtonActionPerformed
 
