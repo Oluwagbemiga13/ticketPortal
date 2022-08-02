@@ -94,4 +94,22 @@ public class Printer {
     
     }
     
+    public static void printTicketArrayList(){
+        if(ticketArrayList.size() < 0){
+            System.out.println("No tickets in ArrayList");
+        }
+        else{
+            for(int i = 0; i < ticketArrayList.size(); i++){
+                Ticket t = ticketArrayList.get(i);
+                System.out.println("\nID: " + t.idTicket);
+                System.out.println("Origin: " + t.origin);
+                System.out.println("Destination: " + t.destination);
+            }
+            
+           
+        }
+    
+    }
+    
+    
 }

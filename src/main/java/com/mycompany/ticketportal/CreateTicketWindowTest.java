@@ -5,30 +5,41 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.ticketportal;
-
-import static com.mycompany.ticketportal.GuiHandler.createBuyTicketWindow;
-import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
-import static com.mycompany.ticketportal.GuiHandler.createTicketInfoWindow;
 import static com.mycompany.ticketportal.TicketPortal.searchTicket;
 import static com.mycompany.ticketportal.TicketPortal.currentTicket;
 import static com.mycompany.ticketportal.TicketPortal.searchCombined;
 import static com.mycompany.ticketportal.GuiHandler.createAddedToCartWindow;
+import static com.mycompany.ticketportal.GuiHandler.createAdminMainMenu;
+import static com.mycompany.ticketportal.GuiHandler.createBuyTicketWindow;
+import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
+import static com.mycompany.ticketportal.TicketPortal.createTicket;
 import static com.mycompany.ticketportal.TicketPortal.doesTicketExists;
+import static com.mycompany.ticketportal.Printer.printTicketArrayList;
 
 /**
  *
  * @author Daniel
  */
-public class CreateTicketWindow extends javax.swing.JFrame {
+public class CreateTicketWindowTest extends javax.swing.JFrame {
 
     /**
-     * Creates new form SearchTicketWindow
+     * Creates new form CreateTicketWindowTest
      */
-    String destination = null;
     String origin = null;
+    String destination = null;
+    String amountString = null;
+
     
-    public CreateTicketWindow() {
+    public CreateTicketWindowTest() {
         initComponents();
+    }
+    
+    public static boolean sameDestination(String origin, String destination){
+        boolean isSame = false;
+        if(origin.equals(destination)){
+            isSame = true;
+        }
+    return isSame;
     }
 
     /**
@@ -40,20 +51,48 @@ public class CreateTicketWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        destinationLabel = new javax.swing.JLabel();
-        okButton = new javax.swing.JButton();
-        backButton = new javax.swing.JButton();
         originComboBox = new javax.swing.JComboBox<>();
         errorLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         destinationComboBox = new javax.swing.JComboBox<>();
+        destinationLabel = new javax.swing.JLabel();
         amountComboBox = new javax.swing.JComboBox<>();
-        destinationLabel1 = new javax.swing.JLabel();
+        amountLabel = new javax.swing.JLabel();
+        okButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        testButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+
+        originComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Calgary", "Lagos", "Pardubice" }));
+        originComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                originComboBoxActionPerformed(evt);
+            }
+        });
+
+        errorLabel.setForeground(new java.awt.Color(255, 0, 51));
+        errorLabel.setText("Origin and destination cant be same");
+
+        jLabel1.setText("Origin");
+
+        destinationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Calgary", "Lagos", "Pardubice" }));
+        destinationComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                destinationComboBoxActionPerformed(evt);
+            }
+        });
 
         destinationLabel.setText("Destination");
+
+        amountComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "100", "250", "500" }));
+        amountComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                amountComboBoxActionPerformed(evt);
+            }
+        });
+
+        amountLabel.setText("Amount");
 
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -69,135 +108,118 @@ public class CreateTicketWindow extends javax.swing.JFrame {
             }
         });
 
-        originComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Calgary", "Lagos", "Pardubice", " " }));
-        originComboBox.addActionListener(new java.awt.event.ActionListener() {
+        testButton.setText("TEST");
+        testButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                originComboBoxActionPerformed(evt);
+                testButtonActionPerformed(evt);
             }
         });
-
-        errorLabel.setForeground(new java.awt.Color(255, 0, 51));
-        errorLabel.setText("Ticket not found");
-
-        jLabel1.setText("Origin");
-
-        destinationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Calgary", "Lagos", "Pardubice" }));
-        destinationComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                destinationComboBoxActionPerformed(evt);
-            }
-        });
-
-        amountComboBox.setMaximumRowCount(10);
-        amountComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new int[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "25", "100" }));
-        amountComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amountComboBoxActionPerformed(evt);
-            }
-        });
-
-        destinationLabel1.setText("Amount");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(121, 121, 121)
+                        .addComponent(okButton)
+                        .addGap(33, 33, 33)
+                        .addComponent(backButton))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(102, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(destinationLabel))
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(destinationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(originComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(okButton))
-                            .addComponent(destinationLabel1))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(backButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(amountComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(destinationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(amountLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(destinationComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(originComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(amountComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(testButton)))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(originComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(testButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(destinationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(amountComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(destinationLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(amountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(backButton))
-                .addGap(62, 62, 62))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         errorLabel.setVisible(false);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void originComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_originComboBoxActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_originComboBoxActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
-        
+
         origin = (String) originComboBox.getSelectedItem();
         destination = (String) destinationComboBox.getSelectedItem();
-        /*
-        if(doesTicketExists(origin,destination)){
-            currentTicket = searchTicket(destination);
-            searchCombined(origin,destination);
-            createBuyTicketWindow();
-            errorLabel.setVisible(false);
-            this.dispose();
+        amountString = (String) amountComboBox.getSelectedItem();
         
-        else{
-            errorLabel.setVisible(true);}*/
+        if(!sameDestination(origin,destination)){
+            int amount = Integer.parseInt(amountString);
+            int price;
+        
+            if(destination == "Pardubice"){
+                price = 500;
+            }
+            else{
+                price = 600;
+            }
+            for(int i = 0; i < amount; i++){
+                createTicket(origin, destination, price);
+            }
         }
-        
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        createCustomerMainMenuWindow();
+        createAdminMainMenu();
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void originComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_originComboBoxActionPerformed
+    private void testButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testButtonActionPerformed
         // TODO add your handling code here:
-  
-    }//GEN-LAST:event_originComboBoxActionPerformed
-
-    private void destinationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinationComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_destinationComboBoxActionPerformed
+        printTicketArrayList();
+    }//GEN-LAST:event_testButtonActionPerformed
 
     private void amountComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amountComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_amountComboBoxActionPerformed
+
+    private void destinationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinationComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_destinationComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,34 +238,34 @@ public class CreateTicketWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateTicketWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateTicketWindowTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateTicketWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateTicketWindowTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateTicketWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateTicketWindowTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateTicketWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CreateTicketWindowTest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateTicketWindow().setVisible(true);
+                new CreateTicketWindowTest().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Integer> amountComboBox;
+    private javax.swing.JComboBox<String> amountComboBox;
+    private javax.swing.JLabel amountLabel;
     private javax.swing.JButton backButton;
     private javax.swing.JComboBox<String> destinationComboBox;
     private javax.swing.JLabel destinationLabel;
-    private javax.swing.JLabel destinationLabel1;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton okButton;
     private javax.swing.JComboBox<String> originComboBox;
+    private javax.swing.JButton testButton;
     // End of variables declaration//GEN-END:variables
 }
