@@ -75,7 +75,7 @@ public class GuiHandler {
     }
     
     public static void createCreateTicketWindow(){
-    CreateTicketWindowTest createTicketWindowTest = new CreateTicketWindowTest();
+    CreateTicketWindow createTicketWindowTest = new CreateTicketWindow();
     createTicketWindowTest.setVisible(true);
     }
 }
