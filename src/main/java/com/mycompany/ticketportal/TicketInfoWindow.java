@@ -6,11 +6,11 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
-import static com.mycompany.ticketportal.GuiHandler.createAddedToChartWindow;
 import static com.mycompany.ticketportal.GuiHandler.createSearchTicketWindow;
 import static com.mycompany.ticketportal.Printer.printTicketInfo;
 import static com.mycompany.ticketportal.TicketPortal.currentTicket;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
+import static com.mycompany.ticketportal.GuiHandler.createAddedToCartWindow;
 
 
 /**
@@ -101,7 +101,7 @@ public class TicketInfoWindow extends javax.swing.JFrame {
     private void addToCartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addToCartButtonActionPerformed
         // TODO add your handling code here:
         logedInCustomer.customerCart.add(currentTicket);
-        createAddedToChartWindow();
+        createAddedToCartWindow();
         this.dispose();
 
     }//GEN-LAST:event_addToCartButtonActionPerformed

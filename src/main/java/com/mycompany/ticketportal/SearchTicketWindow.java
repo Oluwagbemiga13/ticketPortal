@@ -6,9 +6,14 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 package com.mycompany.ticketportal;
 
+import static com.mycompany.ticketportal.GuiHandler.createBuyTicketWindow;
+import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
 import static com.mycompany.ticketportal.GuiHandler.createTicketInfoWindow;
 import static com.mycompany.ticketportal.TicketPortal.searchTicket;
 import static com.mycompany.ticketportal.TicketPortal.currentTicket;
+import static com.mycompany.ticketportal.TicketPortal.searchCombined;
+import static com.mycompany.ticketportal.GuiHandler.createAddedToCartWindow;
+import static com.mycompany.ticketportal.TicketPortal.doesTicketExists;
 
 /**
  *
@@ -19,6 +24,9 @@ public class SearchTicketWindow extends javax.swing.JFrame {
     /**
      * Creates new form SearchTicketWindow
      */
+    String destination = null;
+    String origin = null;
+    
     public SearchTicketWindow() {
         initComponents();
     }
@@ -33,22 +41,17 @@ public class SearchTicketWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         destinationLabel = new javax.swing.JLabel();
-        destinationField = new javax.swing.JTextField();
         okButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
-        pardubiceButton = new javax.swing.JButton();
-        calgaryButton = new javax.swing.JButton();
-        lagosButton = new javax.swing.JButton();
+        originComboBox = new javax.swing.JComboBox<>();
+        errorLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        destinationComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         destinationLabel.setText("Destination");
-
-        destinationField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                destinationFieldActionPerformed(evt);
-            }
-        });
 
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,16 +67,24 @@ public class SearchTicketWindow extends javax.swing.JFrame {
             }
         });
 
-        pardubiceButton.setText("Pardubice");
-        pardubiceButton.addActionListener(new java.awt.event.ActionListener() {
+        originComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Calgary", "Lagos", "Pardubice", " " }));
+        originComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pardubiceButtonActionPerformed(evt);
+                originComboBoxActionPerformed(evt);
             }
         });
 
-        calgaryButton.setText("Calgary");
+        errorLabel.setForeground(new java.awt.Color(255, 0, 51));
+        errorLabel.setText("Ticket not found");
 
-        lagosButton.setText("Lagos");
+        jLabel1.setText("Origin");
+
+        destinationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Calgary", "Lagos", "Pardubice", " " }));
+        destinationComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                destinationComboBoxActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,70 +93,85 @@ public class SearchTicketWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(okButton)
-                        .addGap(39, 39, 39)
-                        .addComponent(backButton)
-                        .addGap(64, 64, 64)
-                        .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(destinationField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(120, 120, 120)
+                        .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pardubiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(calgaryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lagosButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(67, Short.MAX_VALUE))
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(okButton)
+                                .addGap(33, 33, 33)
+                                .addComponent(backButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(destinationLabel))
+                                .addGap(42, 42, 42)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(destinationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(originComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(92, 92, 92))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(pardubiceButton)
-                .addGap(31, 31, 31)
-                .addComponent(calgaryButton)
-                .addGap(31, 31, 31)
-                .addComponent(lagosButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(errorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(originComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(destinationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
-                    .addComponent(backButton)
-                    .addComponent(destinationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(destinationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62))
+                    .addComponent(backButton))
+                .addGap(64, 64, 64))
         );
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+        errorLabel.setVisible(false);
 
-    private void destinationFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinationFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_destinationFieldActionPerformed
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
-        String destination = destinationField.getText();
-        currentTicket = searchTicket(destination);
-        if(currentTicket!=null){
-        createTicketInfoWindow();
-        this.dispose();
+        
+        origin = (String) originComboBox.getSelectedItem();
+        destination = (String) destinationComboBox.getSelectedItem();
+        
+        if(doesTicketExists(origin,destination)){
+            currentTicket = searchTicket(destination);
+            searchCombined(origin,destination);
+            createBuyTicketWindow();
+            errorLabel.setVisible(false);
+            this.dispose();
         }
+        else{
+            errorLabel.setVisible(true);
+        }
+        
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        CustomerMainMenuWindow customerMainMenuWindow = new CustomerMainMenuWindow();
-        customerMainMenuWindow.setVisible(true); 
+        createCustomerMainMenuWindow();
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void pardubiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pardubiceButtonActionPerformed
+    private void originComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_originComboBoxActionPerformed
         // TODO add your handling code here:
-        String origin = "Pardubice";
+  
+    }//GEN-LAST:event_originComboBoxActionPerformed
 
-        this.dispose();
-    }//GEN-LAST:event_pardubiceButtonActionPerformed
+    private void destinationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_destinationComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_destinationComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,11 +210,11 @@ public class SearchTicketWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton calgaryButton;
-    private javax.swing.JTextField destinationField;
+    private javax.swing.JComboBox<String> destinationComboBox;
     private javax.swing.JLabel destinationLabel;
-    private javax.swing.JButton lagosButton;
+    private javax.swing.JLabel errorLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton okButton;
-    private javax.swing.JButton pardubiceButton;
+    private javax.swing.JComboBox<String> originComboBox;
     // End of variables declaration//GEN-END:variables
 }

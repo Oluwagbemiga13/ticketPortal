@@ -138,7 +138,7 @@ public class CustomerMainMenuWindow extends javax.swing.JFrame {
                 .addGap(23, 23, 23))
         );
 
-        //customerMainMenuLabel.setText("Welcome " + logedInCustomer.firstName + " " + logedInCustomer.lastName);
+        customerMainMenuLabel.setText("Welcome " + logedInCustomer.firstName + " " + logedInCustomer.lastName);
 
         pack();
         setLocationRelativeTo(null);

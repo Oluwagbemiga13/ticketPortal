@@ -139,7 +139,7 @@
         <Property name="text" type="java.lang.String" value="Welcome Daniel Rakovsk&#xfd;"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="//customerMainMenuLabel.setText(&quot;Welcome &quot; + logedInCustomer.firstName + &quot; &quot; + logedInCustomer.lastName);"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="customerMainMenuLabel.setText(&quot;Welcome &quot; + logedInCustomer.firstName + &quot; &quot; + logedInCustomer.lastName);"/>
       </AuxValues>
     </Component>
   </SubComponents>

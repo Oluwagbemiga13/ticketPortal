@@ -23,6 +23,12 @@ public class GuiHandler {
         logInWindow.setVisible(true); 
     }
     
+    public static void createCustomerMainMenuWindow(){
+        
+        CustomerMainMenuWindow customerMainMenuWindow = new CustomerMainMenuWindow();
+        customerMainMenuWindow.setVisible(true);  
+    }
+    
     public static void createSearchTicketWindow(){
         SearchTicketWindow searchTicketWindow = new SearchTicketWindow();
         searchTicketWindow.setVisible(true);
@@ -33,15 +39,9 @@ public class GuiHandler {
         ticketInfoWindow.setVisible(true);
     }
     
-    public static void createAddedToChartWindow(){
+    public static void createAddedToCartWindow(){
         AddedToCartWindow addedToCartWindow = new AddedToCartWindow();
         addedToCartWindow.setVisible(true);
-    }
-    
-    public static void createCustomerMainMenuWindow(){
-        
-        CustomerMainMenuWindow customerMainMenuWindow = new CustomerMainMenuWindow();
-        customerMainMenuWindow.setVisible(true); 
     }
     
     public static void createShoppingCartWindow(){
@@ -68,5 +68,10 @@ public class GuiHandler {
         AdminChangePasswordWindow adminChangePasswordWindow = new AdminChangePasswordWindow();
         adminChangePasswordWindow.setVisible(true);
     }   
+    
+    public static void createBuyTicketWindow(){
+        BuyTicketWindow buyTicketWindow = new BuyTicketWindow();
+        buyTicketWindow.setVisible(true);
+    }
     
 }

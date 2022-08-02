@@ -204,7 +204,7 @@ public class TicketPortal {
     }
     
     public static boolean doesTicketExists(String origin, String destination){
-        ArrayList<Ticket> potentialTickets = new ArrayList<>();
+        
         boolean exists = false;
         for(int i = 0; i < ticketArrayList.size(); i++){
             Ticket q = ticketArrayList.get(i);
@@ -222,6 +222,7 @@ public class TicketPortal {
         }
         else{
            Ticket t = testSearch(origin, destination);
+           System.out.println("Origin :" +  t.origin);
            System.out.println("Destination :" +  t.destination);
         }
     
