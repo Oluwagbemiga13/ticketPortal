@@ -7,7 +7,10 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.Ledger.customerTicktetMap;
+import static com.mycompany.ticketportal.Ledger.soldTicketArrayList;
+import static com.mycompany.ticketportal.Ledger.ticketArrayList;
 import static com.mycompany.ticketportal.Printer.printTicketInfo;
+import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
 import static com.mycompany.ticketportal.TicketPortal.searchTicket;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -49,7 +52,22 @@ public class Vendor {
         }
     }
     return null;
-}
+    }
+    
+    public static void pay(){
+        Customer c = logedInCustomer;
+        
+        for(Ticket t : c.customerCart){
+            soldTicketArrayList.add(t);
+            int position  = t.idTicket;
+            ticketArrayList.set(position, null);
+            t = null;
+        }
+        c.customerCart.clear();
+        System.out.println("ticketArrayList: " + ticketArrayList.toString());
+        System.out.println("soldTicketArrayList: " + soldTicketArrayList.toString());
+        System.out.println("customerCart: " + c.customerCart.toString());
+    }
     /*
     public static void returnTicket(){
         

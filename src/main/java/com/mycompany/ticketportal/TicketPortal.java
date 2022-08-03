@@ -263,15 +263,17 @@ public static void main(String [] args) throws IOException{
     searchCombined("Lagos", "Pardubice");
     //searchCombined("Pardubice", "Pardubice");
     
-    for(int i = 0; i < 10; i++){
+    int testCOunter = 3;
+    
+    for(int i = 0; i < testCOunter; i++){
     createTicket("Lagos", "Pardubice",500);
     }
     
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < testCOunter; i++){
     createTicket("Calgary", "Pardubice",500);
     }
 
-    for(int i = 0; i < 10; i++){
+    for(int i = 0; i < testCOunter; i++){
     createTicket("Calgary", "Lagos",500);
     }
     

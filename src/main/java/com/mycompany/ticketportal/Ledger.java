@@ -26,6 +26,7 @@ public class Ledger {
     
     // Ticket ArrayList
     public static  ArrayList<Ticket> ticketArrayList;
+    public static  ArrayList<Ticket> soldTicketArrayList;
     
     // Ticket HashMaps
     public static HashMap<Ticket, String> ticketOriginMap; 
@@ -51,8 +52,10 @@ public class Ledger {
         ticketDestinationIdMap = new HashMap<>();
         loginPasswordMap = new HashMap<>();
         loginPositionMap = new HashMap<>();
+        
         ticketOriginMap = new HashMap<>();
         ticketDestinationMap = new HashMap<>();
+        soldTicketArrayList = new ArrayList<>();
         
         administratorArrayList = new ArrayList<>();
         administratorLoginPasswordMap = new HashMap<>();

@@ -8,6 +8,7 @@ package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
+import static com.mycompany.ticketportal.Vendor.pay;
 
 /**
  *
@@ -19,6 +20,8 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
      * Creates new form ShoppingCartWindow
      */
     int ticketCOunter = 1;
+    int totalPrice = 0;
+    
     
     public String numPrinter(){
         String message = "Ticket no. " + ticketCOunter + " : ";
@@ -37,7 +40,18 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         ticketsTable.setValueAt(origin, i, 0);
         ticketsTable.setValueAt(destination, i, 1);
         ticketsTable.setValueAt(price, i, 2);
+        displayTotalPrice();
     }
+    }
+    
+    public void displayTotalPrice(){
+        int price = 0;
+        
+        for(int i = 0; i< logedInCustomer.customerCart.size(); i++){
+            price = logedInCustomer.customerCart.get(i).price + price;
+        }
+        totalLabel.setText("Total " + String.valueOf(price) + " " + "$");
+    
     }
     
     public ShoppingCartWindow() {
@@ -59,7 +73,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         payButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         ticketsTable = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        totalLabel = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,6 +89,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -84,9 +99,29 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         });
 
         payButton.setText("Pay");
+        payButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payButtonActionPerformed(evt);
+            }
+        });
 
         ticketsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -117,48 +152,43 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
             ticketsTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        totalLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        totalLabel.setText("Total 5000 $");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
-                .addComponent(payButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(21, 21, 21)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(148, 148, 148)
+                            .addComponent(payButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(26, 26, 26)
+                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(payButton)
                     .addComponent(backButton))
-                .addGap(71, 71, 71))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -167,12 +197,10 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
         // TODO add your handling code here:
-        for(int i = 0 ; i < logedInCustomer.customerCart.size(); i++){
-        System.out.println("ID Ticket" + logedInCustomer.customerCart.get(i).idTicket);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        pay();
+    }//GEN-LAST:event_payButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,11 +240,11 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton payButton;
     private javax.swing.JTable ticketsTable;
+    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }
