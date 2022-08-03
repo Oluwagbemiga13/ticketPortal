@@ -12,6 +12,7 @@ import static com.mycompany.ticketportal.Ledger.ticketArrayList;
 import static com.mycompany.ticketportal.Printer.printTicketInfo;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
 import static com.mycompany.ticketportal.TicketPortal.searchTicket;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -68,29 +69,35 @@ public class Vendor {
         System.out.println("soldTicketArrayList: " + soldTicketArrayList.toString());
         System.out.println("customerCart: " + c.customerCart.toString());
     }
-    /*
-    public static void returnTicket(){
+    
+    public static void returnTicket(int idOfTicket){
         
-        System.out.println("\nMethod returnTicket");
-        Ticket t = searchTicket();
+        Ticket t;
+        Customer c = logedInCustomer;
+        ArrayList<Ticket> temp = new ArrayList<>();
+        boolean wasFound = false;
+        
+        for(int i = 0; i<c.customerCart.size();i++){
+            if(c.customerCart.get(i).idTicket == idOfTicket){
+                t = c.customerCart.get(i);
+                ticketArrayList.set(idOfTicket, t);
+                wasFound = true;
+            }
+            else{
+                temp.add(c.customerCart.get(i));
+            }
+        }
+        if(wasFound){
+            c.customerCart.clear();
+            for(int i = 0; i < temp.size(); i++){
+                c.customerCart.add(temp.get(i));
+            }
+        }
 
-        int ticketKey = -1;
-        try{
-            ticketKey = getKeyByValue(customerTicktetMap,t.idTicket);
-        }
-        catch(Exception NullPointerException){
-            System.out.println("Ticket not found.");
-        }
-        customerTicktetMap.remove(ticketKey);
-        
-        if(t == null){
-        }
-        else{
-            System.out.println("Ticket ID: " + t.idTicket + "was returned by " + t.owner.firstName + t.owner.lastName);
-            t.owner = null;
-            t.isSold = false;
-            printTicketInfo(t);
-        }
-    }*/
+        System.out.println("ticketArrayList: " + ticketArrayList.toString());
+        System.out.println("soldTicketArrayList: " + soldTicketArrayList.toString());
+        System.out.println("customerCart: " + c.customerCart.toString());
+    }
+    
     
 }

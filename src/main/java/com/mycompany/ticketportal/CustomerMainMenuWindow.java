@@ -8,6 +8,7 @@ package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createChangePasswordWindow;
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
+import static com.mycompany.ticketportal.GuiHandler.createReturnTicketWindow;
 import static com.mycompany.ticketportal.GuiHandler.createSearchTicketWindow;
 import static com.mycompany.ticketportal.GuiHandler.createShoppingCartWindow;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
@@ -152,6 +153,8 @@ public class CustomerMainMenuWindow extends javax.swing.JFrame {
 
     private void returnTicketButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnTicketButtonActionPerformed
         // TODO add your handling code here:
+        createReturnTicketWindow();
+        this.dispose();
     }//GEN-LAST:event_returnTicketButtonActionPerformed
 
     private void HelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HelpActionPerformed

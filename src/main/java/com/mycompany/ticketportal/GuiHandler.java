@@ -76,7 +76,13 @@ public class GuiHandler {
     }
     
     public static void createCreateTicketWindow(){
-    CreateTicketWindow createTicketWindowTest = new CreateTicketWindow();
-    createTicketWindowTest.setVisible(true);
+    CreateTicketWindow createTicketWindow = new CreateTicketWindow();
+    createTicketWindow.setVisible(true);
+    }
+    
+    public static void createReturnTicketWindow(){
+    ReturnTicketWindow returnTicketWindow = new ReturnTicketWindow();
+    returnTicketWindow.setVisible(true);
+    returnTicketWindow.fillTable();
     }
 }
