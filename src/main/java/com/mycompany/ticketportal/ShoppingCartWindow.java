@@ -25,6 +25,20 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         
         return message;
     }
+    // First rows than colums
+    public void fillTable(){
+
+    for(int i = 0; i< logedInCustomer.customerCart.size(); i++){
+        
+        String origin  = logedInCustomer.customerCart.get(i).origin;
+        String destination = logedInCustomer.customerCart.get(i).destination;
+        String price = String.valueOf(logedInCustomer.customerCart.get(i).price);
+        
+        ticketsTable.setValueAt(origin, i, 0);
+        ticketsTable.setValueAt(destination, i, 1);
+        ticketsTable.setValueAt(price, i, 2);
+    }
+    }
     
     public ShoppingCartWindow() {
         initComponents();
@@ -44,7 +58,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         backButton = new javax.swing.JButton();
         payButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        ticketsTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -71,8 +85,14 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
 
         payButton.setText("Pay");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        ticketsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -90,9 +110,12 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setColumnSelectionAllowed(true);
-        jScrollPane2.setViewportView(jTable2);
-        jTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ticketsTable.setColumnSelectionAllowed(true);
+        jScrollPane2.setViewportView(ticketsTable);
+        ticketsTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (ticketsTable.getColumnModel().getColumnCount() > 0) {
+            ticketsTable.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +140,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
+                        .addGap(189, 189, 189)
                         .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -125,10 +148,10 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(payButton)
                     .addComponent(backButton))
@@ -184,6 +207,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
                 new ShoppingCartWindow().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,7 +216,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton payButton;
+    private javax.swing.JTable ticketsTable;
     // End of variables declaration//GEN-END:variables
 }

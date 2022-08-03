@@ -47,6 +47,7 @@ public class GuiHandler {
     public static void createShoppingCartWindow(){
         ShoppingCartWindow shoppingCartWindow = new ShoppingCartWindow();
         shoppingCartWindow.setVisible(true);
+        shoppingCartWindow.fillTable();
     }
     
     public static void createChangePasswordWindow(){
