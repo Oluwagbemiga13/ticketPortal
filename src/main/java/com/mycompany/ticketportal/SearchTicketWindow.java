@@ -14,6 +14,7 @@ import static com.mycompany.ticketportal.TicketPortal.currentTicket;
 import static com.mycompany.ticketportal.TicketPortal.searchCombined;
 import static com.mycompany.ticketportal.GuiHandler.createAddedToCartWindow;
 import static com.mycompany.ticketportal.TicketPortal.doesTicketExists;
+import static com.mycompany.ticketportal.TicketPortal.testSearch;
 
 /**
  *
@@ -146,8 +147,7 @@ public class SearchTicketWindow extends javax.swing.JFrame {
         destination = (String) destinationComboBox.getSelectedItem();
         
         if(doesTicketExists(origin,destination)){
-            currentTicket = searchTicket(destination);
-            searchCombined(origin,destination);
+            currentTicket = testSearch(origin,destination);
             createBuyTicketWindow();
             errorLabel.setVisible(false);
             this.dispose();

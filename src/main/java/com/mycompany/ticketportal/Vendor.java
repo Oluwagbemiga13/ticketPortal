@@ -31,9 +31,9 @@ public class Vendor {
             t.owner = c; 
             t.isSold = true;
             Ledger.customerTicktetMap.put(c.idCustomer, t.idTicket);
+            c.customerCart.add(t);
         
             System.out.println("\nMethod sellTicket");
-     
             System.out.println("Ticket ID: " + t.idTicket + " was sold to " + c.firstName + " " + c.lastName);
         }
         else{

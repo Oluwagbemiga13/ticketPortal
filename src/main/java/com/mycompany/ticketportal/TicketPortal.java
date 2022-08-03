@@ -198,11 +198,11 @@ public class TicketPortal {
         ArrayList<Ticket> potentialTickets = new ArrayList<>();
         for(int i = 0; i < ticketArrayList.size(); i++){
             Ticket q = ticketArrayList.get(i);
-            if(q.origin == origin && q.destination == destination && !q.isSold){
+            if(q.origin.equals(origin) && q.destination.equals(destination) && !q.isSold){
                 potentialTickets.add(q);
             }
         }
-        if(potentialTickets.size() > 0){
+        if(!potentialTickets.isEmpty()){
             t = potentialTickets.get(0);
         }
         
@@ -214,7 +214,7 @@ public class TicketPortal {
         boolean exists = false;
         for(int i = 0; i < ticketArrayList.size(); i++){
             Ticket q = ticketArrayList.get(i);
-            if(q.origin == origin && q.destination == destination && !q.isSold){
+            if(q.origin.equals(origin) && q.destination.equals(destination) && !q.isSold){
                 exists = true;
             }
         }
@@ -239,7 +239,7 @@ public class TicketPortal {
         
         for(int i = 0; i < ticketArrayList.size(); i++){
             Ticket q = ticketArrayList.get(i);
-            if(q.origin == origin && q.destination == destination && !q.isSold){
+            if(q.origin.equals(origin) && q.destination.equals(destination) && !q.isSold){
                 ticketPosition = q.idTicket;
             }
         }
@@ -262,6 +262,18 @@ public static void main(String [] args) throws IOException{
     
     searchCombined("Lagos", "Pardubice");
     //searchCombined("Pardubice", "Pardubice");
+    
+    for(int i = 0; i < 10; i++){
+    createTicket("Lagos", "Pardubice",500);
+    }
+    
+    for(int i = 0; i < 10; i++){
+    createTicket("Calgary", "Pardubice",500);
+    }
+
+    for(int i = 0; i < 10; i++){
+    createTicket("Calgary", "Lagos",500);
+    }
     
     char[] testArr = {'d','a','n','1','2','3'};
     
