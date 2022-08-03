@@ -82,6 +82,7 @@ public class Vendor {
                 t = c.customerCart.get(i);
                 ticketArrayList.set(idOfTicket, t);
                 wasFound = true;
+                t.isSold = false;
             }
             else{
                 temp.add(c.customerCart.get(i));
