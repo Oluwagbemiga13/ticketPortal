@@ -198,8 +198,10 @@ public class TicketPortal {
         ArrayList<Ticket> potentialTickets = new ArrayList<>();
         for(int i = 0; i < ticketArrayList.size(); i++){
             Ticket q = ticketArrayList.get(i);
-            if(q.origin.equals(origin) && q.destination.equals(destination) && !q.isSold){
-                potentialTickets.add(q);
+            if(q!=null){
+                if(q.origin.equals(origin) && q.destination.equals(destination) && !q.isSold){
+                    potentialTickets.add(q);
+            }
             }
         }
         if(!potentialTickets.isEmpty()){
@@ -212,10 +214,12 @@ public class TicketPortal {
     public static boolean doesTicketExists(String origin, String destination){
         
         boolean exists = false;
-        for(int i = 0; i < ticketArrayList.size(); i++){
+        for(int i = 0; i < ticketArrayList.size(); i++){   
             Ticket q = ticketArrayList.get(i);
-            if(q.origin.equals(origin) && q.destination.equals(destination) && !q.isSold){
-                exists = true;
+            if(q!=null){
+                if(q.origin.equals(origin) && q.destination.equals(destination) && !q.isSold){
+                    exists = true;
+            }
             }
         }
         return exists;

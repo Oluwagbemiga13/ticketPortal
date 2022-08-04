@@ -208,8 +208,10 @@ public class TicketPortal {
         boolean exists = false;
         for(int i = 0; i < ticketArrayList.size(); i++){
             Ticket q = ticketArrayList.get(i);
+            if(q!=null){
             if(q.origin == origin && q.destination == destination && !q.isSold){
                 exists = true;
+            }
             }
         }
         return exists;
