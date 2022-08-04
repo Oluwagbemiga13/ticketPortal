@@ -7,9 +7,12 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createAdminMainMenu;
+import static com.mycompany.ticketportal.Ledger.customerArrayList;
 import static com.mycompany.ticketportal.Ledger.privateCustomerArrayList;
 import static com.mycompany.ticketportal.Ledger.soldTicketArrayList;
+import static com.mycompany.ticketportal.Ledger.ticketArrayList;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,9 +22,10 @@ import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
 public class ViewReservationWindow extends javax.swing.JFrame {
     
     public void fillTable(){
+    ArrayList<Ticket> ticketsFromCarts = getTicketsFromCarts();
 
     for(int i = 0; i< soldTicketArrayList.size(); i++){
-        
+
         String origin  = soldTicketArrayList.get(i).origin;
         String destination = soldTicketArrayList.get(i).destination;
         String price = String.valueOf(soldTicketArrayList.get(i).price);
@@ -35,11 +39,51 @@ public class ViewReservationWindow extends javax.swing.JFrame {
         ticketsTable.setValueAt(price, i, 2);
         ticketsTable.setValueAt(idString, i, 3);
         ticketsTable.setValueAt(loginCustomer, i, 4);
+        ticketsTable.setValueAt("PAID", i, 5);
         
         //displayTotalPrice();
     }
+    
+    if(ticketsFromCarts!=null){
+        int size = soldTicketArrayList.size();
+        for(int i = 0; i < ticketsFromCarts.size(); i++){
+            String origin  = ticketsFromCarts.get(i).origin;
+            String destination = ticketsFromCarts.get(i).destination;
+            String price = String.valueOf(ticketsFromCarts.get(i).price);
+            String idString = String.valueOf(ticketsFromCarts.get(i).idTicket);
+            int positionCustomer = ticketsFromCarts.get(i).owner.idCustomer;
+            String loginCustomer = privateCustomerArrayList.get(positionCustomer).login;
+        
+        
+            ticketsTable.setValueAt(origin, i + size, 0);
+            ticketsTable.setValueAt(destination, i + size, 1);
+            ticketsTable.setValueAt(price, i + size, 2);
+            ticketsTable.setValueAt(idString, i + size, 3);
+            ticketsTable.setValueAt(loginCustomer, i + size, 4);
+            ticketsTable.setValueAt("UNPAID", i + size, 5);
+        }
     }
     
+    }
+    
+    public static ArrayList<Ticket> getTicketsFromCarts(){
+        ArrayList<Ticket> ticketsFromCarts = new ArrayList<>();
+        
+        for(int i = 0; i < customerArrayList.size(); i++){
+            Customer c = customerArrayList.get(i);
+                if(!c.customerCart.isEmpty()){
+                    for(int j = 0; j< c.customerCart.size(); j++){
+                        ticketsFromCarts.add(c.customerCart.get(j));
+                        System.out.println("ID: " + c.customerCart.get(j).idTicket);
+                    }          
+                }  
+        }
+
+
+        return ticketsFromCarts;
+    
+    }
+    /*        
     public void displayTotalPrice(){
         int price = 0;
         
@@ -48,7 +92,7 @@ public class ViewReservationWindow extends javax.swing.JFrame {
         }
         totalLabel.setText("Total " + String.valueOf(price) + " " + "$");
     
-    }
+    }*/
 
     /**
      * Creates new form ViewReservationWindow
@@ -68,7 +112,6 @@ public class ViewReservationWindow extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         ticketsTable = new javax.swing.JTable();
-        totalLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         idTextField = new javax.swing.JTextField();
         backButton = new javax.swing.JButton();
@@ -78,38 +121,38 @@ public class ViewReservationWindow extends javax.swing.JFrame {
 
         ticketsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Origin", "Destination", "Price", "ID Ticket", "Customer"
+                "Origin", "Destination", "Price", "ID Ticket", "Customer", "Paid"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -120,11 +163,8 @@ public class ViewReservationWindow extends javax.swing.JFrame {
         jScrollPane2.setViewportView(ticketsTable);
         ticketsTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        totalLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        totalLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        totalLabel.setText("Total 0 $");
-
-        jLabel1.setText("Type ID of ticket that you want to remove from your cart qnd pres OK");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Type ID of ticket that you want to acces and pres OK");
 
         idTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         idTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -152,41 +192,40 @@ public class ViewReservationWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(0, 53, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
+                        .addGap(116, 116, 116)
                         .addComponent(okButton, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(256, 256, 256))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
-                        .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(308, 308, 308)
+                .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addComponent(idTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(backButton))
-                .addGap(21, 21, 21))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -256,6 +295,5 @@ public class ViewReservationWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton okButton;
     private javax.swing.JTable ticketsTable;
-    private javax.swing.JLabel totalLabel;
     // End of variables declaration//GEN-END:variables
 }

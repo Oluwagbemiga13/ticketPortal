@@ -40,9 +40,6 @@ public class Vendor {
             System.out.println("\nMethod sellTicket");
             System.out.println("Ticket ID: " + t.idTicket + " was sold to " + c.firstName + " " + c.lastName);
         }
-        else{
-            
-        }
     }
     
     // Method that searches KEY by it´s VALUE
