@@ -91,4 +91,16 @@ public class GuiHandler {
     viewReservationWindow.setVisible(true);
     viewReservationWindow.fillTable();
     }
+    
+    public static void createEditCustomersWindow(){
+    EditCustomersWindow editCustomersWindow = new EditCustomersWindow();
+    editCustomersWindow.setVisible(true);
+    editCustomersWindow.fillTable();
+    }
+    
+    public static void createCustomerChangeValuesWindow(){
+    CustomerChangeValuesWindow customerChangeValuesWindow = new CustomerChangeValuesWindow();
+    customerChangeValuesWindow.setVisible(true);
+    customerChangeValuesWindow.fillFields();
+    }
 }

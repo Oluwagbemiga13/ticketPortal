@@ -16,11 +16,12 @@ $RequestHeader set AuditDateTime expr=%{TIME}
  */
 public class PrivateCustomer {
 
-    static int arrayPosition = 0;
+    static int privateCustomerCounter = 0;
     String privatePassword;
     String login;
     String privateFirstName;
     String privateLastName;
+    int position;
     
        
     public PrivateCustomer(String privatePassword, String login, String privateFirstName, String privateLastName){
@@ -29,12 +30,14 @@ public class PrivateCustomer {
         this.login = login;
         this.privateLastName = privateLastName;
         this.privateFirstName = privateFirstName;
+        this.position = privateCustomerCounter;
         
-        Ledger.loginPositionMap.put(login, arrayPosition);
+        
+        Ledger.loginPositionMap.put(login, privateCustomerCounter);
         Ledger.privateCustomerArrayList.add(this);
         
         
-        arrayPosition++;
+        privateCustomerCounter++;
         }
     
     }
