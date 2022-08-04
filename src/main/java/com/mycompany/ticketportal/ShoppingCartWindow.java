@@ -7,6 +7,7 @@ $RequestHeader set AuditDateTime expr=%{TIME}
 package com.mycompany.ticketportal;
 
 import static com.mycompany.ticketportal.GuiHandler.createCustomerMainMenuWindow;
+import static com.mycompany.ticketportal.GuiHandler.createShoppingCartWindow;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
 import static com.mycompany.ticketportal.Vendor.pay;
 
@@ -153,7 +154,8 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
         }
 
         totalLabel.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        totalLabel.setText("Total 5000 $");
+        totalLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        totalLabel.setText("Total 0 $");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,7 +163,7 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(21, 21, 21)
@@ -200,6 +202,8 @@ public class ShoppingCartWindow extends javax.swing.JFrame {
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
         // TODO add your handling code here:
         pay();
+        createShoppingCartWindow();
+        this.dispose();
     }//GEN-LAST:event_payButtonActionPerformed
 
     /**
