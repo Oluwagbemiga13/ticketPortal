@@ -263,6 +263,9 @@ public static void main(String [] args) throws IOException{
     
     Ticket testTicket = new Ticket("Lagos", "Pardubice", 20000);
     
+    createAcc("Test","Testovsky","Test1","Test1");
+    
+    
     
     searchCombined("Lagos", "Pardubice");
     //searchCombined("Pardubice", "Pardubice");

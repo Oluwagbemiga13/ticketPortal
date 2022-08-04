@@ -9,6 +9,7 @@ package com.mycompany.ticketportal;
 import static com.mycompany.ticketportal.GuiHandler.createAdminChangePasswordWindow;
 import static com.mycompany.ticketportal.GuiHandler.createCreateTicketWindow;
 import static com.mycompany.ticketportal.GuiHandler.createFirstWindow;
+import static com.mycompany.ticketportal.GuiHandler.createViewReservationWindow;
 import static com.mycompany.ticketportal.TicketPortal.currentTicket;
 import static com.mycompany.ticketportal.TicketPortal.logedInCustomer;
 import static com.mycompany.ticketportal.TicketPortal.logedInAdministrator;
@@ -63,6 +64,11 @@ public class AdminMainMenu extends javax.swing.JFrame {
         });
 
         viewReservationsButton.setText("View Reservations");
+        viewReservationsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReservationsButtonActionPerformed(evt);
+            }
+        });
 
         editCustomersButton.setText("Edit Customers");
 
@@ -137,6 +143,12 @@ public class AdminMainMenu extends javax.swing.JFrame {
         createCreateTicketWindow();
         this.dispose();
     }//GEN-LAST:event_createTicketButtonActionPerformed
+
+    private void viewReservationsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReservationsButtonActionPerformed
+        // TODO add your handling code here:
+        createViewReservationWindow();
+        this.dispose();
+    }//GEN-LAST:event_viewReservationsButtonActionPerformed
 
     /**
      * @param args the command line arguments

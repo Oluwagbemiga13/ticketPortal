@@ -85,4 +85,10 @@ public class GuiHandler {
     returnTicketWindow.setVisible(true);
     returnTicketWindow.fillTable();
     }
+    
+    public static void createViewReservationWindow(){
+    ViewReservationWindow viewReservationWindow = new ViewReservationWindow();
+    viewReservationWindow.setVisible(true);
+    viewReservationWindow.fillTable();
+    }
 }
