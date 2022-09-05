@@ -40,10 +40,8 @@ import javax.swing.JFrame;
  * @author Daniel
  *  - Main class of project
  *  - Creates : Customers( Visible by user) for terminal and PrivateCustomers (Login ect. Hidden)
- *  Q: Potřebuji to vůbec zvlášť? Mám to předělat?
  *  - Creates : FirstWindow of GUI
  *  - Creates : Accounts...
- *  Q: Co přesně by měla dělat tahle třída??? 
  */
 public class TicketPortal {
     
@@ -92,7 +90,6 @@ public class TicketPortal {
     }
     
     // Method combining createPrivateCustomer() and createCustomer()
-    // Q: Měl by tohle mít na starosti jiný objekt ???
     public static void createAcc(String firstName, String lastName, String login, String password){
         createPrivateCustomer( firstName, lastName, login, password);
         createCustomer();
@@ -182,7 +179,6 @@ public class TicketPortal {
         }
     }
 
-    // Q: Nevím jak vyřešit vyjímku když metoda vrací null ???
     public static Ticket testSearch(String origin, String destination){
         Ticket t = null;
         
@@ -249,7 +245,6 @@ public static void main(String [] args){
 
     createFirstWindow();
 
-    // Q: Potřebuji inicializovat tyto objekty nebo to lze udělat jinak ???
     Ledger ledger = new Ledger();
     Vendor vendor = new Vendor();
     

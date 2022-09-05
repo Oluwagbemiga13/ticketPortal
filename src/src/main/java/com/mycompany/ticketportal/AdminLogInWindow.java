@@ -208,7 +208,6 @@ public class AdminLogInWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginLoginActionPerformed
 
-    //Q: Mám na to vytvořit metodu, i když to použiji jen když se klikne na Button ???
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
         String login = loginLogin.getText();

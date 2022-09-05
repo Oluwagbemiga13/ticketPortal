@@ -1,8 +1,5 @@
 /*
- *  @ Danile Rakovský
-$RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
-$RequestHeader set AuditDateTime expr=%{TIME}
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ *  @ Daniel Rakovský
  */
 
 
@@ -45,10 +42,10 @@ import javax.swing.JFrame;
  * @author Daniel
  *  - Main class of project
  *  - Creates : Customers( Visible by user) for terminal and PrivateCustomers (Login ect. Hidden)
- *  Q: Potřebuji to vůbec zvlášť? Mám to předělat?
+ *  O: Potřebuji to vůbec zvlášť? Mám to předělat? A: Jedna třída, Heslo přes HASH funkci - předělat admin
  *  - Creates : FirstWindow of GUI
  *  - Creates : Accounts...
- *  Q: Co přesně by měla dělat tahle třída??? 
+ *  O: Co přesně by měla dělat tahle třída??? A: je to ok, pro školní projekt v budoucnu lze řešit FO přes run();
  */
 public class TicketPortal {
     
@@ -56,10 +53,9 @@ public class TicketPortal {
     public static PrivateCustomer privateLogedInCustomer = null;
     public static Ticket currentTicket = null;
     public static Administrator logedInAdministrator = null;
-    private static String format;
+    //private static String format;
     
     // PrivateCustomer is Object storing variables needed for methods createCustomer(), login() and changePassword()
-    // Q: Má cenu předělávat String privatePassword na Array ???
     public static PrivateCustomer createPrivateCustomer(String firstName, String lastName, String login, String password){
         
         /* As a memory of Class TicketPortal being born. 
@@ -85,6 +81,8 @@ public class TicketPortal {
     
     // Object Customer contains only First and Last name of Customer.
     // Method creating customer from form PrivateCustomer 
+    //O: A: self documenting code
+    //Q: Interface A: přečti si o tom
     public static Customer createCustomer(){
         
         int privateCustomerArrayListPosition = privateCustomerArrayList.size() - 1;
@@ -98,7 +96,7 @@ public class TicketPortal {
     }
     
     // Method combining createPrivateCustomer() and createCustomer()
-    // Q: Měl by tohle mít na starosti jiný objekt ???
+    // O: A: vyhýbat se static
     public static void createAcc(String firstName, String lastName, String login, String password){
         createPrivateCustomer( firstName, lastName, login, password);
         createCustomer();
@@ -149,7 +147,7 @@ public class TicketPortal {
         return t;
     }
 
-    
+    // Q: logger A: vygooglit
     //Method that chcecks if login and password is correct and log in Customer and PrivateCustomer
     public static void logIn(String login, String password){
         if(loginPasswordMap.containsKey(login)){
@@ -188,7 +186,6 @@ public class TicketPortal {
         }
     }
 
-    // Q: Nevím jak vyřešit vyjímku když metoda vrací null ???
     public static Ticket testSearch(String origin, String destination){
         Ticket t = null;
         
@@ -253,11 +250,11 @@ public class TicketPortal {
     
 
 public static void main(String [] args) throws IOException{
+    
     System.out.println("Hello");
 
     createFirstWindow();
 
-    // Q: Potřebuji inicializovat tyto objekty nebo to lze udělat jinak ???
     Ledger ledger = new Ledger();
     Vendor vendor = new Vendor();
     

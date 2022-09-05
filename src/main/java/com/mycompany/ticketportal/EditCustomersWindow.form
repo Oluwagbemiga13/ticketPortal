@@ -137,7 +137,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Type ID of ticket that you want to remove from your cart qnd pres OK"/>
+        <Property name="text" type="java.lang.String" value="Type ID of customer that needs to be edited and press OK"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="idTextField">

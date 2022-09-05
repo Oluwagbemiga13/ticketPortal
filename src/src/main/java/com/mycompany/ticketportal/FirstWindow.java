@@ -14,10 +14,6 @@ import static com.mycompany.ticketportal.TicketPortal.privateLogedInCustomer;
  */
 public class FirstWindow extends javax.swing.JFrame {
 
-    
-   
-    // Q: Musím komentovat i takhle základní funkce, potažmo třídy ???
-    
     public void createAccountWindow(){
         
         CreateAccountWindow createAccountWindow = new CreateAccountWindow();

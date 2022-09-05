@@ -1,8 +1,5 @@
 /*
- *  @ Danile Rakovský
-$RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
-$RequestHeader set AuditDateTime expr=%{TIME}
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ *  @ Daniel Rakovský
  */
 package com.mycompany.ticketportal;
 
@@ -111,7 +108,7 @@ public class EditCustomersWindow extends javax.swing.JFrame {
         ticketsTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Type ID of ticket that you want to remove from your cart qnd pres OK");
+        jLabel1.setText("Type ID of customer that needs to be edited and press OK");
 
         idTextField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         idTextField.addActionListener(new java.awt.event.ActionListener() {

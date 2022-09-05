@@ -1,8 +1,5 @@
 /*
- *  @ Danile Rakovský
-$RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
-$RequestHeader set AuditDateTime expr=%{TIME}
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ *  @ Daniel Rakovský
  */
 package com.mycompany.ticketportal;
 
@@ -17,7 +14,7 @@ public class FirstWindow extends javax.swing.JFrame {
 
     
    
-    // Q: Musím komentovat i takhle základní funkce, potažmo třídy ???
+   
     
     public void createAccountWindow(){
         

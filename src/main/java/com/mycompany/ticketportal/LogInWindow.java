@@ -1,8 +1,5 @@
 /*
- *  @ Danile Rakovský
-$RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
-$RequestHeader set AuditDateTime expr=%{TIME}
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ *  @ Daniel Rakovský
  */
 package com.mycompany.ticketportal;
 
@@ -207,7 +204,6 @@ public class LogInWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginLoginActionPerformed
 
-    //Q: Mám na to vytvořit metodu, i když to použiji jen když se klikne na Button ???
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         // TODO add your handling code here:
         String login = loginLogin.getText();

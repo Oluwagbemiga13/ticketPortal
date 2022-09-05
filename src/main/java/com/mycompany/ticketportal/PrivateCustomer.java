@@ -1,5 +1,8 @@
-package com.mycompany.ticketportal;
+/*
+ *  @ Daniel Rakovský
+ */
 
+package com.mycompany.ticketportal;
 
 import com.mycompany.ticketportal.Customer;
 

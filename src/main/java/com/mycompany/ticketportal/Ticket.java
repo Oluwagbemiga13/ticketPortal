@@ -1,8 +1,5 @@
 /*
- *  @ Danile Rakovský
-$RequestHeader set AuditDate expr=%{TIME_YEAR}-%{TIME_MON}-%{TIME_DAY}
-$RequestHeader set AuditDateTime expr=%{TIME}
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ *  @ Daniel Rakovský
  */
 package com.mycompany.ticketportal;
 
@@ -10,7 +7,7 @@ package com.mycompany.ticketportal;
 /**
  *
  * @author Daniel
- * Q: Má cenu popisovat takhle malé třídy,  když jsou takhle duležité ???
+ * O: Má cenu popisovat takhle malé třídy,  když jsou takhle duležité ??? A:ne
  * Object Ticket represents...
  */
 public class Ticket {
